@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통증 클리닉 | 다나라의원·한의원</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; color: #333; line-height: 1.6; background-color: #f4f7fa; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 700; color: #0044cc; text-decoration: none; }
+        .logo span { color: #333; font-weight: 300; }
+        
+        .sub-hero { 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1516062423079-7ca13cdc7f5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); 
+            background-size: cover; background-position: center; height: 350px; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; 
+        }
+        .sub-hero h1 { font-size: 32px; margin-bottom: 10px; font-weight: 700; }
+        .sub-hero p { font-size: 18px; opacity: 0.9; }
+
+        section { padding: 60px 20px; max-width: 800px; margin: auto; }
+
+        .main-copy { text-align: center; margin-bottom: 50px; }
+        .main-copy .icon-arrow { font-size: 40px; color: #0044cc; margin-bottom: 10px; display: block; }
+        .main-copy h2 { font-size: 28px; color: #222; line-height: 1.4; font-weight: 700; }
+        .main-copy h2 span { color: #0044cc; }
+
+        .treatment-card { 
+            background: white; border-radius: 15px; padding: 30px; margin-bottom: 25px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: flex-start; gap: 20px;
+            transition: 0.3s; border-left: 6px solid #0044cc;
+        }
+        .treatment-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,68,204,0.1); }
+        .card-icon { font-size: 24px; color: #0044cc; margin-top: 5px; }
+        .card-content h3 { font-size: 22px; margin: 0 0 10px 0; color: #e74c3c; font-weight: 700; }
+        .card-content p { margin: 0; color: #666; font-size: 16px; word-break: keep-all; }
+
+        /* 하단 강조 텍스트 */
+        .notice-box { 
+            background: #eef2ff; padding: 25px; border-radius: 15px; margin-top: 40px; 
+            border-left: 5px solid #0044cc; font-size: 15px; color: #0044cc; line-height: 1.7;
+        }
+
+        .btn-home { 
+            display: block; width: 220px; margin: 50px auto 0; text-align: center; 
+            background: #0044cc; color: white; padding: 16px; border-radius: 50px; 
+            text-decoration: none; font-weight: bold; font-size: 18px; transition: 0.3s;
+        }
+        .btn-home:hover { background: #002e8c; box-shadow: 0 5px 15px rgba(0,68,204,0.3); }
+
+        footer { background: #222; color: #aaa; padding: 40px 20px; text-align: center; font-size: 14px; margin-top: 60px; }
+
+        @media (max-width: 768px) {
+            .sub-hero h1 { font-size: 26px; }
+            .main-copy h2 { font-size: 22px; }
+            .treatment-card { flex-direction: column; padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">다나라<span>의원·한의원</span></a>
+    </header>
+
+    <div class="sub-hero">
+        <p>다나라의원·한의원</p>
+        <h1>통증 클리닉</h1>
+    </div>
+
+    <section>
+        <div class="main-copy">
+            <span class="icon-arrow">▲</span>
+            <h2>급성 손상으로 발생하는 통증의 케어와<br><span>만성 통증질환의 근본적인 치료</span>를 지향합니다</h2>
+        </div>
+
+        <div class="treatment-card">
+            <div class="card-icon">▶</div>
+            <div class="card-content">
+                <h3>프롤로주사치료</h3>
+                <p>급, 만성 통증의 원인 중 하나는 관절을 지지하는 인대의 약화입니다. 인대가 약해지면 관절 불안정성이 증가하고, 이로 인해 통증이 발생합니다. 프롤로치료는 인대를 강화하여 통증의 근본적 치료를 목표로 합니다.</p>
+            </div>
+        </div>
+
+        <div class="treatment-card">
+            <div class="card-icon">▶</div>
+            <div class="card-content">
+                <h3>도수치료</h3>
+                <p>반복적인 잘못된 자세 및 습관으로 인해 관절 주위 인대가 약화되고 통증이 발생합니다. 도수치료는 자세 교정과 약해진 근육 회복을 통해 통증을 제어하고 통증의 재발을 방지합니다.</p>
+            </div>
+        </div>
+
+        <div class="treatment-card">
+            <div class="card-icon">▶</div>
+            <div class="card-content">
+                <h3>신경차단술</h3>
+                <p>주로 만성 척추질환에 사용됩니다. 다나라만의 독창적 시술기법으로 척추 주변 신경을 일시적으로 마취하여 통증을 덜 느끼게 하는 일반적 신경차단술의 목표뿐만 아니라 흥분된 척추 주변 신경섬유를 정상화하여 만성 통증 재발을 근본적으로 억제하는 치료 목표를 가지고 있습니다.</p>
+            </div>
+        </div>
+
+        <div class="treatment-card">
+            <div class="card-icon">▶</div>
+            <div class="card-content">
+                <h3>스테로이드 주사치료</h3>
+                <p>초음파, MRI를 통한 정확한 진단하에, 연부 조직의 염증성 통증이 명확할 때 시행합니다.</p>
+                <p style="margin-top:10px; font-weight:500;">특징: 초음파 가이드로 정확하게 주입하여 스테로이드 부작용을 최소화</p>
+                <p style="font-weight:500; color:#e74c3c;">주의사항: 연 2회 이상 시술은 피하는 것이 좋습니다.</p>
+            </div>
+        </div>
+
+        <div class="treatment-card">
+            <div class="card-icon">▶</div>
+            <div class="card-content">
+                <h3>운동치료</h3>
+                <p>통증이 완화된 후, 일상생활 복귀와 증상 유지관리가 중요합니다. 운동치료는 환자가 스스로 회복을 이어가고 재발을 방지할 수 있도록 운동 교육 및 근육 회복을 목표로 합니다.</p>
+            </div>
+        </div>
+
+        <div class="notice-box">
+            * 다나라는 환자 상태에 따라 주사치료 + 도수치료 + 운동치료를 단계적으로 병행하여, 단순한 통증 완화를 넘어 근본적 회복을 추구합니다. 또한 한방 침, 부항 등의 치료도 병행하여 부작용을 최소화하고 몸에 무리가 가지 않도록 돕습니다.
+        </div>
+
+        <a href="index.html" class="btn-home">메인으로 돌아가기</a>
+    </section>
+
+    <footer>
+        <p>© 2026 Danara Clinic. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
