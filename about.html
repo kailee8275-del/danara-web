@@ -11,7 +11,7 @@
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; padding: 0; margin: 0; }
         
-        /* 헤더 */
+       /* 헤더 및 드롭다운 (수정됨) */
         header {
             display: flex; justify-content: space-between; align-items: center;
             padding: 20px 50px; background: white;
@@ -19,8 +19,21 @@
         }
         .logo { font-size: 24px; font-weight: 700; color: #0044cc; }
         .logo span { color: #333; font-weight: 300; }
-        nav ul { display: flex; gap: 30px; font-weight: 500; }
-        nav a:hover { color: #0044cc; }
+
+        nav > ul { display: flex; gap: 30px; font-weight: 500; align-items: center; }
+        .menu-item { position: relative; padding-bottom: 5px; cursor: pointer; }
+        
+        /* 드롭다운 메뉴 스타일 추가 */
+        .dropdown {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            background: white; border: 1px solid #eee; border-radius: 8px;
+            width: 220px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            opacity: 0; visibility: hidden; transition: 0.3s; padding: 10px 0;
+            z-index: 1001;
+        }
+        .dropdown li a { display: block; padding: 12px 20px; font-size: 14px; text-align: center; color: #555; }
+        .dropdown a:hover { background: #f0f4ff; color: #0044cc; }
+        .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(10px); }
 
         /* 서브 페이지 상단 배너 */
         .sub-hero {
@@ -102,21 +115,21 @@
 <body>
 
     <header>
-        <a href="index.html" class="logo">다나라<span>의원·한의원</span></a>
+     <a href="index.html" class="logo">다나라<span>의원·한의원</span></a>
         <nav>
             <ul>
                 <li><a href="about.html" style="color:#0044cc;">병원소개</a></li>
                 <li class="menu-item">
-            <a href="#features">클리닉 ▼</a>
-            <ul class="dropdown">
-                <li><a href="clinic01.html">척추·관절 통합클리닉</a></li>
-                <li><a href="clinic02.html">통증클리닉</a></li>
-                <li><a href="clinic03.html">재활 클리닉</a></li>
-            </ul>
-        </li>
-        <li><a href="index.html#doctor">의료진</a></li>
-        <li><a href="index.html#contact">오시는길</a></li>
-        <li><a href="price.html">비급여 안내</a></li>        
+                    <a href="#features">클리닉 ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="clinic01.html">척추·관절 통합클리닉</a></li>
+                        <li><a href="clinic02.html">통증클리닉</a></li>
+                        <li><a href="clinic03.html">재활 클리닉</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#doctor">의료진</a></li>
+                <li><a href="index.html#contact">오시는길</a></li>
+                <li><a href="price.html">비급여 안내</a></li>
     </ul>
 </nav>
     </header>
@@ -181,8 +194,8 @@
                 <h3>⏰ 진료시간 안내</h3>
                 <table>
                     <tr>
-                        <th>평　일</th>
-                        <td>09:30 - 19:00</td>
+                        <th>평  일</th>
+                        <td>09:30 - 18:30(화,목 야간진료20:30)</td>
                     </tr>
                     <tr>
                         <th>토요일</th>
@@ -233,4 +246,5 @@
 </body>
 
 </html>
+
 
