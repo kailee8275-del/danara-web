@@ -3,93 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>비급여 금액 안내 | 다나라의원·한의원</title>
+    <title>비급여 안내 | 다나라의원·한의원</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; color: #333; line-height: 1.6; background-color: #f9f9f9; }
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: 700; color: #0044cc; text-decoration: none; }
         .logo span { color: #333; font-weight: 300; }
-        .container { max-width: 1000px; margin: 50px auto; padding: 40px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        h2 { font-size: 28px; color: #222; text-align: center; margin-bottom: 40px; }
-        h3 { font-size: 20px; color: #0044cc; border-left: 4px solid #0044cc; padding-left: 15px; margin: 40px 0 15px; background: #f0f4ff; padding-top: 5px; padding-bottom: 5px; }
-        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 14px; }
-        th, td { padding: 12px; border: 1px solid #ddd; text-align: center; }
-        th { background: #f8f9fa; font-weight: 700; color: #444; }
-        td.name { text-align: left; padding-left: 15px; font-weight: 500; background: #fff; }
-        td.price { text-align: right; padding-right: 15px; color: #0044cc; font-weight: 700; }
-        .notice { font-size: 13px; color: #777; margin-top: 30px; line-height: 1.8; border-top: 1px solid #eee; padding-top: 20px; }
-        .btn-home { display: block; width: 200px; margin: 50px auto 0; text-align: center; background: #0044cc; color: white; padding: 15px; border-radius: 50px; text-decoration: none; font-weight: 700; }
- /* 메뉴 링크 색상 통일 및 방문 기록 색상 무시 */
         nav ul { display: flex; gap: 40px; font-weight: 500; list-style: none; margin: 0; padding: 0; align-items: center; }
-        nav ul li a, 
-        nav ul li a:visited, 
-        nav ul li a:active {
-            color: #333 !important; /* 모든 링크 기본 색상을 진한 회색으로 고정 */
-            text-decoration: none !important;
+        nav ul li a { color: #333; text-decoration: none; }
+        .current-menu { color: #0044cc !important; font-weight: 700 !important; }
+
+        .price-section { padding: 60px 20px; max-width: 1100px; margin: auto; }
+        .main-copy { text-align: center; margin-bottom: 50px; }
+        .main-copy h1 { font-size: 32px; color: #222; }
+        
+        .price-group { margin-bottom: 50px; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .category-tag { background: #0044cc; color: white; padding: 4px 12px; font-size: 13px; border-radius: 5px; margin-bottom: 15px; display: inline-block; }
+        .price-group h3 { margin-top: 0; color: #222; font-size: 22px; border-bottom: 2px solid #f0f4ff; padding-bottom: 15px; margin-bottom: 20px; }
+
+        .price-table { width: 100%; border-collapse: collapse; }
+        .price-table th { background: #f8f9fa; padding: 15px; border-bottom: 2px solid #dee2e6; text-align: left; font-size: 15px; color: #666; }
+        .price-table td { padding: 15px; border-bottom: 1px solid #eee; font-size: 15px; }
+        .price-table tr:hover { background: #f9fbff; }
+        .code-col { font-weight: 700; color: #0044cc; font-family: monospace; width: 150px; }
+        .price-col { font-weight: 700; color: #333; text-align: right; width: 200px; }
+
+        footer { background: #222; color: #aaa; padding: 40px 20px; text-align: center; font-size: 14px; margin-top: 60px; }
+        
+        @media (max-width: 768px) {
+            header { padding: 20px; flex-direction: column; gap: 15px; }
+            .price-table th, .price-table td { padding: 10px 5px; font-size: 13px; }
+            .code-col { width: 80px; }
+            .price-col { width: 100px; }
         }
-
-        /* 마우스 호버 시 색상 */
-        nav ul li a:hover { color: #0044cc !important; }
-
-        /* 현재 페이지(클리닉) 강조 스타일 */
-        .current-menu {
-            color: #0044cc !important; /* 클리닉 메뉴만 파란색으로 강조 */
-            font-weight: 700 !important;
-        }
-
-        /* 드롭다운 메뉴 스타일 */
-        .menu-item { position: relative; cursor: pointer; }
-       /* 드롭다운 박스 최종 수정본 */
-.dropdown {
-    display: block !important; /* 옆으로 나열되는 것을 강제로 막고 세로로 바꿈 */
-    position: absolute;
-    top: 100%; 
-    left: 50%; 
-    transform: translateX(-50%) translateY(10px);
-    background: white; 
-    border: 1px solid #eee; 
-    border-radius: 12px;
-    width: 240px;           /* 너비를 조금 더 넉넉하게 수정 */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    padding: 10px 0;
-    list-style: none; 
-    opacity: 0; 
-    visibility: hidden; 
-    transition: 0.3s; 
-    z-index: 1001;
-}
-
-/* 드롭다운 안의 리스트 항목 */
-.dropdown li { 
-    width: 100%; 
-    display: block;         /* 항목들이 세로로 차곡차곡 쌓이게 함 */
-}
-
-/* 드롭다운 안의 글자 설정 */
-.dropdown li a { 
-    display: block !important; 
-    padding: 15px 20px; 
-    font-size: 15px; 
-    text-align: center; 
-    color: #555 !important; 
-    white-space: nowrap;    /* 핵심: 글자가 아래로 떨어지지 않게 한 줄로 고정 */
-    transition: 0.2s;
-}
-
-/* 마우스 올렸을 때 효과 */
-.dropdown li a:hover { 
-    background: #f0f4ff; 
-    color: #0044cc !important; 
-}
-
-/* 부모 메뉴에 마우스 올리면 나타남 */
-.menu-item:hover .dropdown { 
-    opacity: 1; 
-    visibility: visible; 
-    transform: translateX(-50%) translateY(0); 
-}
-
     </style>
 </head>
 <body>
@@ -97,15 +44,7 @@
         <a href="index.html" class="logo">다나라<span>의원·한의원</span></a>
         <nav>
             <ul>
-                <li><a href="about.html">병원소개</a></li>
-                <li class="menu-item">
-                    <a href="index.html#features">클리닉 ▼</a>
-                    <ul class="dropdown">
-                        <li><a href="clinic01.html">척추·관절 통합클리닉</a></li>
-                        <li><a href="clinic02.html">통증클리닉</a></li>
-                        <li><a href="clinic03.html">재활 클리닉</a></li>
-                    </ul>
-                </li>
+                <li><a href="index.html#features">클리닉</a></li>
                 <li><a href="index.html#doctor">의료진</a></li>
                 <li><a href="guide.html">오시는길</a></li>
                 <li><a href="price.html" class="current-menu">비급여 안내</a></li>
@@ -113,64 +52,119 @@
         </nav>
     </header>
 
-
-    <div class="container">
-        <h2>비급여 진료비 고지</h2>
-
-        <h3>1. 검사료 (초음파)</h3>
-        <table>
-            <thead><tr><th>항목</th><th>부위/구분</th><th>비용 (최저~최고)</th></tr></thead>
-            <tbody>
-                <tr><td class="name">근골격계 초음파</td><td>손가락, 발가락 외 모든 부위</td><td class="price">100,000원 ~ 100,000원</td></tr>
-                <tr><td class="name">근골격계 초음파</td><td>손가락, 발가락</td><td class="price">60,000원 ~ 60,000원</td></tr>
-            </tbody>
-        </table>
-
-        <h3>2. 이학요법료 (도수치료 등)</h3>
-        <table>
-            <thead><tr><th>항목</th><th>구분/시간</th><th>비용 (최저~최고)</th></tr></thead>
-            <tbody>
-                <tr><td class="name">도수치료</td><td>통증치료/체형교정</td><td class="price">100,000원 ~ 200,000원</td></tr>
-                <tr><td class="name">체외충격파치료</td><td>집중형/방사형</td><td class="price">50,000원 ~ 100,000원</td></tr>
-                <tr><td class="name">신장분사치료</td><td>1부위</td><td class="price">50,000원 ~ 100,000원</td></tr>
-                <tr><td class="name">윈백 고주파치료</td><td>고주파자극기</td><td class="price">50,000원 ~ 120,000원</td></tr>
-            </tbody>
-        </table>
-
-        <h3>3. 처치 및 수술료</h3>
-        <table>
-            <thead><tr><th>항목</th><th>내용/부위</th><th>비용 (최저~최고)</th></tr></thead>
-            <tbody>
-                <tr><td class="name">체외충격파치료</td><td>집중형/방사형</td><td class="price">50,000원 ~ 100,000원</td></tr>
-                <tr><td class="name">콜라겐주사</td><td>척추/관절(테라필 등)</td><td class="price">300,000원 ~ 500,000원</td></tr>
-                <tr><td class="name">BMAC (골수 줄기세포 주사)</td><td>시술료</td><td class="price">3,910,000원 ~ 3,910,000원</td></tr>
-            </tbody>
-        </table>
-
-        <h3>5. 제증명수수료</h3>
-        <table>
-            <thead><tr><th>항목</th><th>단위</th><th>비용</th></tr></thead>
-            <tbody>
-                <tr><td class="name">일반진단서 / 병가확인서</td><td>1부</td><td class="price">20,000원</td></tr>
-                <tr><td class="name">상해진단서 (3주 미만)</td><td>1부</td><td class="price">100,000원</td></tr>
-                <tr><td class="name">상해진단서 (3주 이상)</td><td>1부</td><td class="price">150,000원</td></tr>
-                <tr><td class="name">진료확인서 / 통원확인서</td><td>1부</td><td class="price">3,000원</td></tr>
-                <tr><td class="name">입퇴원확인서</td><td>1부</td><td class="price">3,000원</td></tr>
-                <tr><td class="name">진료비영수증 (재발급)</td><td>1부</td><td class="price">1,000원</td></tr>
-                <tr><td class="name">진료기록사본 (5매까지)</td><td>1부</td><td class="price">1,000원 (매당)</td></tr>
-                <tr><td class="name">CD/DVD 복사</td><td>1매</td><td class="price">10,000원</td></tr>
-            </tbody>
-        </table>
-
-        <div class="notice">
-            ※ 본 고지 사항은 의료법 제45조 제1항 및 동법 시행규칙 제42조의 2 제1항에 의거하여 작성되었습니다.<br>
-            ※ 구체적인 비용은 환자의 상태나 진료 내용에 따라 달라질 수 있습니다.
+    <div class="price-section">
+        <div class="main-copy">
+            <h1>비급여 진료비 고시 안내</h1>
         </div>
-        <a href="index.html" class="btn-home">메인으로 돌아가기</a>
+
+        <div class="price-group">
+            <span class="category-tag">한방비급여</span>
+            <h3>🌿 한방 특화 진료 및 첩약</h3>
+            <table class="price-table">
+                <thead><tr><th>청구코드</th><th>명칭</th><th class="price-col">금액</th></tr></thead>
+                <tbody>
+                    <tr><td class="code-col">P19</td><td>외래첩약 (1제 보름분)</td><td class="price-col">300,000 ~ 500,000</td></tr>
+                    <tr><td class="code-col">P20</td><td>경옥고</td><td class="price-col">150,000 ~ 600,000</td></tr>
+                    <tr><td class="code-col">p21</td><td>공진단 (1환)</td><td class="price-col">50,000 ~ 80,000</td></tr>
+                    <tr><td class="code-col">P1-2</td><td>약침</td><td class="price-col">20,000</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="price-group">
+            <span class="category-tag">이학요법</span>
+            <h3>🧘 도수 및 물리치료</h3>
+            <table class="price-table">
+                <thead><tr><th>청구코드</th><th>명칭</th><th class="price-col">금액</th></tr></thead>
+                <tbody>
+                    <tr><td class="code-col">AIR001</td><td>고압산소치료 1시간</td><td class="price-col">100,000</td></tr>
+                    <tr><td class="code-col">AT002</td><td>윈백고주파치료</td><td class="price-col">50,000</td></tr>
+                    <tr><td class="code-col">MZ007</td><td>신장분사치료</td><td class="price-col">50,000</td></tr>
+                    <tr><td class="code-col">PT009</td><td>도수치료</td><td class="price-col">100,000 ~ 200,000</td></tr>
+                    <tr><td class="code-col">PT100</td><td>체외충격파치료</td><td class="price-col">50,000</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="price-group">
+            <span class="category-tag">비급여주사제</span>
+            <h3>💉 수액 및 영양 주사</h3>
+            <table class="price-table">
+                <thead><tr><th>청구코드</th><th>명칭</th><th class="price-col">금액</th></tr></thead>
+                <tbody>
+                    <tr><td class="code-col">642404441</td><td>데노넥스주(아세트아미노펜) (1g/100mL)</td><td class="price-col">100,000</td></tr>
+                    <tr><td class="code-col">670607761</td><td>아모부로펜주(이부프로펜)</td><td class="price-col">100,000</td></tr>
+                    <tr><td class="code-col">678900490</td><td>닥터라민주</td><td class="price-col">50,000</td></tr>
+                    <tr><td class="code-col">644913570</td><td>중외 5% 포도당 주사액</td><td class="price-col">60,000</td></tr>
+                    <tr><td class="code-col">645905980</td><td>에티피에스주 (ATP)</td><td class="price-col">20,000</td></tr>
+                    <tr><td class="code-col">645906361</td><td>싸이원주 (싸이모신알파1)</td><td class="price-col">250,000</td></tr>
+                    <tr><td class="code-col">655500901</td><td>조스타박스주 (대상포진 백신)</td><td class="price-col">200,000</td></tr>
+                    <tr><td class="code-col">662502981</td><td>바이온주 (글루타티온)</td><td class="price-col">30,000</td></tr>
+                    <tr><td class="code-col">662800050</td><td>에이티피주 20밀리그램</td><td class="price-col">20,000</td></tr>
+                    <tr><td class="code-col">669904601</td><td>리포라제주 (히알우로니다제)</td><td class="price-col">100,000</td></tr>
+                    <tr><td class="code-col">670600791</td><td>메리트씨주사 (비타민C)</td><td class="price-col">80,000</td></tr>
+                    <tr><td class="code-col">670601941</td><td>진코발주 (은행엽)</td><td class="price-col">10,000</td></tr>
+                    <tr><td class="code-col">670602631</td><td>하이코민주사 (비타민B12)</td><td class="price-col">20,000</td></tr>
+                    <tr><td class="code-col">670606371</td><td>마시주사 10%</td><td class="price-col">30,000</td></tr>
+                    <tr><td class="code-col">056400041</td><td>스카이조스터주 (대상포진)</td><td class="price-col">140,000</td></tr>
+                    <tr><td class="code-col">VITD</td><td>비타민D 근주</td><td class="price-col">30,000</td></tr>
+                    <tr><td class="code-col">A84750031</td><td>라이넥주 (태반주사)</td><td class="price-col">30,000</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="price-group">
+            <span class="category-tag">비급여주사시술</span>
+            <h3>🎯 정밀 주사 시술</h3>
+            <table class="price-table">
+                <thead><tr><th>청구코드</th><th>명칭</th><th class="price-col">금액</th></tr></thead>
+                <tbody>
+                    <tr><td class="code-col">P120</td><td>프롤로주사치료</td><td class="price-col">80,000 ~ 200,000</td></tr>
+                    <tr><td class="code-col">642404061</td><td>DNA주사 (뉴클레오주)</td><td class="price-col">100,000</td></tr>
+                    <tr><td class="code-col">BM2600VT3</td><td>콜라겐주사 콜힐업</td><td class="price-col">300,000 ~ 1,000,000</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="price-group">
+            <span class="category-tag">재료대 / 검사 / 입원</span>
+            <h3>📦 기타 항목</h3>
+            <table class="price-table">
+                <thead><tr><th>청구코드</th><th>명칭</th><th class="price-col">금액</th></tr></thead>
+                <tbody>
+                    <tr><td class="code-col">BM5000OR.</td><td>리젠카라 (REGENCARRA)</td><td class="price-col">150,000</td></tr>
+                    <tr><td class="code-col">BM5001VU</td><td>배리덤로션엠디</td><td class="price-col">38,000</td></tr>
+                    <tr><td class="code-col">FOOT</td><td>스플린트용 신발</td><td class="price-col">10,000</td></tr>
+                    <tr><td class="code-col">H80000477</td><td>팔걸이</td><td class="price-col">5,000</td></tr>
+                    <tr><td class="code-col">BC1203RE.</td><td>DR.MED-CERVICAL (경추부)</td><td class="price-col">10,000</td></tr>
+                    <tr><td class="code-col">CHO</td><td>초음파 검사료</td><td class="price-col">60,000 ~ 100,000</td></tr>
+                    <tr><td class="code-col">Y2500</td><td>간병인 식대</td><td class="price-col">5,000</td></tr>
+                    <tr><td class="code-col">A01</td><td>공기밥</td><td class="price-col">1,000</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="price-group">
+            <span class="category-tag">증명서, 서류발급</span>
+            <h3>📄 각종 제증명 수수료</h3>
+            <table class="price-table">
+                <thead><tr><th>청구코드</th><th>명칭</th><th class="price-col">금액</th></tr></thead>
+                <tbody>
+                    <tr><td class="code-col">A00</td><td>진단서 발급</td><td class="price-col">20,000</td></tr>
+                    <tr><td class="code-col">A00002</td><td>소견서 발급</td><td class="price-col">10,000</td></tr>
+                    <tr><td class="code-col">A000008</td><td>상해진단서 발급</td><td class="price-col">100,000</td></tr>
+                    <tr><td class="code-col">A01</td><td>진료확인서 / 통원확인서</td><td class="price-col">3,000</td></tr>
+                    <tr><td class="code-col">A02</td><td>입퇴원확인서</td><td class="price-col">3,000</td></tr>
+                    <tr><td class="code-col">A03</td><td>영상복사비 (CD/DVD)</td><td class="price-col">10,000</td></tr>
+                    <tr><td class="code-col">A04</td><td>진료기록사본 (5매까지)</td><td class="price-col">1,000 (매당)</td></tr>
+                    <tr><td class="code-col">BG001</td><td>비급여 처방전 발급</td><td class="price-col">20,000</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    <footer>
+        <p>© 2026 다나라의원·한의원. All Rights Reserved.</p>
+    </footer>
 </body>
-
 </html>
-
-
-
