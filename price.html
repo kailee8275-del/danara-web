@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비급여 금액 안내 | 다나라의원·한의원</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; color: #333; line-height: 1.6; background-color: #f9f9f9; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 700; color: #0044cc; text-decoration: none; }
+        .logo span { color: #333; font-weight: 300; }
+        .container { max-width: 1000px; margin: 50px auto; padding: 40px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        h2 { font-size: 28px; color: #222; text-align: center; margin-bottom: 40px; }
+        h3 { font-size: 20px; color: #0044cc; border-left: 4px solid #0044cc; padding-left: 15px; margin: 40px 0 15px; background: #f0f4ff; padding-top: 5px; padding-bottom: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; font-size: 14px; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: center; }
+        th { background: #f8f9fa; font-weight: 700; color: #444; }
+        td.name { text-align: left; padding-left: 15px; font-weight: 500; background: #fff; }
+        td.price { text-align: right; padding-right: 15px; color: #0044cc; font-weight: 700; }
+        .notice { font-size: 13px; color: #777; margin-top: 30px; line-height: 1.8; border-top: 1px solid #eee; padding-top: 20px; }
+        .btn-home { display: block; width: 200px; margin: 50px auto 0; text-align: center; background: #0044cc; color: white; padding: 15px; border-radius: 50px; text-decoration: none; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <header><a href="index.html" class="logo">다나라<span>의원·한의원</span></a></header>
+    <div class="container">
+        <h2>비급여 진료비 고지</h2>
+
+        <h3>1. 검사료 (초음파)</h3>
+        <table>
+            <thead><tr><th>항목</th><th>부위/구분</th><th>비용 (최저~최고)</th></tr></thead>
+            <tbody>
+                <tr><td class="name">근골격계 초음파</td><td>손가락, 발가락 외 모든 부위</td><td class="price">100,000원 ~ 100,000원</td></tr>
+                <tr><td class="name">근골격계 초음파</td><td>손가락, 발가락</td><td class="price">60,000원 ~ 60,000원</td></tr>
+            </tbody>
+        </table>
+
+        <h3>2. 이학요법료 (도수치료 등)</h3>
+        <table>
+            <thead><tr><th>항목</th><th>구분/시간</th><th>비용 (최저~최고)</th></tr></thead>
+            <tbody>
+                <tr><td class="name">도수치료</td><td>통증치료/체형교정</td><td class="price">100,000원 ~ 200,000원</td></tr>
+                <tr><td class="name">신장분사치료</td><td>1부위</td><td class="price">50,000원 ~ 50,000원</td></tr>
+                <tr><td class="name">컴백 고주파치료</td><td>고주파자극기</td><td class="price">50,000원 ~ 50,000원</td></tr>
+            </tbody>
+        </table>
+
+        <h3>3. 처치 및 수술료</h3>
+        <table>
+            <thead><tr><th>항목</th><th>내용/부위</th><th>비용 (최저~최고)</th></tr></thead>
+            <tbody>
+                <tr><td class="name">체외충격파치료</td><td>집중형/방사형</td><td class="price">50,000원 ~ 50,000원</td></tr>
+                <tr><td class="name">충격파 주사 (콜라겐주사)</td><td>척추/관절(테라필 등)</td><td class="price">300,000원 ~ 400,000원</td></tr>
+                <tr><td class="name">BMAC (골수 줄기세포 주사)</td><td>시술료</td><td class="price">3,910,000원 ~ 3,910,000원</td></tr>
+            </tbody>
+        </table>
+
+        <h3>4. 제증명수수료</h3>
+        <table>
+            <thead><tr><th>항목</th><th>단위</th><th>비용</th></tr></thead>
+            <tbody>
+                <tr><td class="name">일반진단서 / 병가확인서</td><td>1부</td><td class="price">20,000원</td></tr>
+                <tr><td class="name">상해진단서 (3주 미만)</td><td>1부</td><td class="price">100,000원</td></tr>
+                <tr><td class="name">상해진단서 (3주 이상)</td><td>1부</td><td class="price">150,000원</td></tr>
+                <tr><td class="name">진료확인서 / 통원확인서</td><td>1부</td><td class="price">3,000원</td></tr>
+                <tr><td class="name">입퇴원확인서</td><td>1부</td><td class="price">3,000원</td></tr>
+                <tr><td class="name">진료비영수증 (재발급)</td><td>1부</td><td class="price">1,000원</td></tr>
+                <tr><td class="name">진료기록사본 (5매까지)</td><td>1부</td><td class="price">1,000원 (매당)</td></tr>
+                <tr><td class="name">CD/DVD 복사</td><td>1매</td><td class="price">10,000원</td></tr>
+            </tbody>
+        </table>
+
+        <div class="notice">
+            ※ 본 고지 사항은 의료법 제45조 제1항 및 동법 시행규칙 제42조의 2 제1항에 의거하여 작성되었습니다.<br>
+            ※ 구체적인 비용은 환자의 상태나 진료 내용에 따라 달라질 수 있습니다.
+        </div>
+        <a href="index.html" class="btn-home">메인으로 돌아가기</a>
+    </div>
+</body>
+</html>
