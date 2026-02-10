@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오시는 길 | 다나라의원·한의원</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; color: #333; line-height: 1.6; background-color: #f9f9f9; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 700; color: #0044cc; text-decoration: none; }
+        .logo span { color: #333; font-weight: 300; }
+        nav ul { display: flex; gap: 40px; font-weight: 500; list-style: none; margin: 0; padding: 0; align-items: center; }
+        nav ul li a, nav ul li a:visited { color: #333 !important; text-decoration: none !important; }
+        nav ul li a:hover { color: #0044cc !important; }
+        .current-menu { color: #0044cc !important; font-weight: 700 !important; }
+        .menu-item { position: relative; cursor: pointer; }
+        .dropdown { display: block !important; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: white; border: 1px solid #eee; border-radius: 12px; width: 240px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 10px 0; list-style: none !important; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1001; }
+        .dropdown li { display: block !important; width: 100%; }
+        .dropdown li a { display: block !important; padding: 15px 20px; font-size: 15px; text-align: center; color: #555 !important; white-space: nowrap; }
+        .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
+        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+        .contact-title { text-align: center; margin-bottom: 40px; }
+        .contact-title h1 { font-size: 32px; color: #222; }
+        
+        /* 구글맵 영역 */
+        .map-area { background: white; padding: 10px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 30px; height: 450px; overflow: hidden; }
+        .map-area iframe { width: 100%; height: 100%; border: 0; border-radius: 10px; }
+
+        /* 주차 안내 섹션 */
+        .parking-guide { background: #eef4ff; padding: 25px; border-radius: 15px; margin-bottom: 40px; border-left: 5px solid #0044cc; }
+        .parking-guide h3 { margin: 0 0 15px 0; color: #0044cc; display: flex; align-items: center; gap: 10px; }
+        .parking-guide p { margin: 5px 0; font-size: 15px; color: #444; }
+        .parking-step { font-weight: 700; color: #0044cc; }
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .info-box { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .info-box h3 { color: #0044cc; margin-top: 0; border-bottom: 2px solid #f0f4ff; padding-bottom: 10px; margin-bottom: 20px; }
+        .info-item { margin-bottom: 15px; display: flex; align-items: flex-start; gap: 10px; }
+        .info-label { font-weight: 700; color: #555; min-width: 80px; }
+        
+        footer { background: #222; color: #aaa; padding: 40px 20px; text-align: center; font-size: 14px; margin-top: 60px; }
+
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; }
+            header { padding: 20px; flex-direction: column; gap: 15px; }
+            .map-area { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">다나라<span>의원·한의원</span></a>
+        <nav>
+            <ul>
+                <li class="menu-item">
+                    <a href="index.html#features">클리닉 ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="clinic01.html">척추·관절 통합클리닉</a></li>
+                        <li><a href="clinic02.html">통증클리닉</a></li>
+                        <li><a href="clinic03.html">재활 클리닉</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#doctor">의료진</a></li>
+                <li><a href="location.html" class="current-menu">오시는길</a></li>
+                <li><a href="price.html">비급여 안내</a></li>
+            </ul>
+        </nav>
+    </header>
+
+  <div class="container">
+    <div class="contact-title">
+        <h1>오시는 길</h1>
+        <p>다나라의원·한의원은 <strong>석촌고분역 2번 출구</strong> 바로 앞에 위치하고 있습니다.</p>
+    </div>
+
+    <div class="map-area">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.132644265438!2d127.098862!3d37.504246!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca5002b85775b%3A0xe0e0e0e0e0e0e0e0!2z7ISc7LSM6rOg67aE66GcIDI3OQ!5e0!3m2!1sko!2skr!4v1700000000000" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+
+    <div class="parking-guide">
+        <h3>🚗 주차장 이용 안내</h3>
+        <p>건물 뒤편에 주차장이 있습니다. 주차관리인 부재 시 병원으로 전화하시면 안내해 드립니다.</p>
+        <p style="margin-top:10px; font-size: 14px; color: #666;">※ 내원 환자분들께는 무료 주차권을 지원해 드립니다.</p>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-box">
+            <h3>위치 및 연락처</h3>
+            <div class="info-item">
+                <span class="info-label">주소</span>
+                <span>서울 송파구 백제고분로 279, 접수 2층 (석촌동 14-13)</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">전화번호</span>
+                <span>02-6959-2075</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">대중교통</span>
+                <span>9호선 석촌고분역 2번 출구 도보 2분</span>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>진료 시간</h3>
+            <div class="info-item">
+                <span class="info-label">평일</span>
+                <span>09:30 - 18:30<br><strong>(화, 목 야간진료 ~ 20:30)</strong></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">점심시간</span>
+                <span>13:00 - 14:00</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">토요일</span>
+                <span>09:30 - 14:00 (점심시간 없음)</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label" style="color: #e74c3c;">휴진</span>
+                <span>일요일</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">공휴일</span>
+                <span>10:00 - 13:00 (점심시간 없음)<br>
+                <small style="color: #0044cc; font-weight: 500;">* 대체공휴일은 정상진료(09:30-18:30)합니다.</small>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <footer>
+        <p>© 2026 Danara Clinic. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
