@@ -11,6 +11,38 @@
         .logo { font-size: 24px; font-weight: 700; color: #0044cc; text-decoration: none; }
         .logo span { color: #333; font-weight: 300; }
 
+        /* 메뉴 링크 색상 통일 및 방문 기록 색상 무시 */
+        nav ul { display: flex; gap: 40px; font-weight: 500; list-style: none; margin: 0; padding: 0; align-items: center; }
+        nav ul li a, 
+        nav ul li a:visited, 
+        nav ul li a:active {
+            color: #333 !important; /* 모든 링크 기본 색상을 진한 회색으로 고정 */
+            text-decoration: none !important;
+        }
+
+        /* 마우스 호버 시 색상 */
+        nav ul li a:hover { color: #0044cc !important; }
+
+        /* 현재 페이지(클리닉) 강조 스타일 */
+        .current-menu {
+            color: #0044cc !important; /* 클리닉 메뉴만 파란색으로 강조 */
+            font-weight: 700 !important;
+        }
+
+        /* 드롭다운 메뉴 스타일 */
+        .menu-item { position: relative; cursor: pointer; }
+        .dropdown {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: white; border: 1px solid #eee; border-radius: 8px;
+            width: 200px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            opacity: 0; visibility: hidden; transition: 0.3s; padding: 10px 0;
+            list-style: none; z-index: 1001;
+        }
+        .dropdown li { width: 100%; }
+        .dropdown li a { display: block; padding: 12px 20px; font-size: 14px; text-align: center; color: #555 !important; }
+        .dropdown li a:hover { background: #f0f4ff; color: #0044cc !important; }
+        .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+
         /* 상단 히어로 영역 */
         .sub-hero { 
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1559757175-5700dde675bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); 
@@ -19,49 +51,13 @@
         }
         .sub-hero h1 { font-size: 32px; margin-bottom: 10px; font-weight: 700; }
         .sub-hero p { font-size: 18px; opacity: 0.9; }
-/* 드롭다운 메뉴 및 상단 네비게이션 스타일 */
-        nav > ul { display: flex; gap: 40px; font-weight: 500; list-style: none; margin: 0; padding: 0; }
-        .menu-item { position: relative; padding-bottom: 5px; cursor: pointer; }
-        .menu-item a { text-decoration: none; color: #333; }
 
-        .dropdown {
-            position: absolute; 
-            top: 100%; 
-            left: 50%; 
-            transform: translateX(-50%);
-            background: white; 
-            border: 1px solid #eee; 
-            border-radius: 8px;
-            width: 200px; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            opacity: 0; 
-            visibility: hidden; 
-            transition: 0.3s; 
-            padding: 10px 0;
-            list-style: none;
-            z-index: 1001;
-        }
-
-        .dropdown li { width: 100%; }
-        .dropdown li a { 
-            display: block; 
-            padding: 12px 20px; 
-            font-size: 14px; 
-            text-align: center; 
-            color: #555 !important; 
-        }
-
-        .dropdown li a:hover { background: #f0f4ff; color: #0044cc !important; }
-        .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(10px); }
         section { padding: 60px 20px; max-width: 800px; margin: auto; }
-
-        /* 메인 카피 */
         .main-copy { text-align: center; margin-bottom: 50px; }
         .main-copy .icon-arrow { font-size: 40px; color: #0044cc; margin-bottom: 10px; display: block; }
         .main-copy h2 { font-size: 28px; color: #222; line-height: 1.4; font-weight: 700; }
         .main-copy h2 span { color: #0044cc; }
 
-        /* 치료 항목 카드 스타일 */
         .treatment-card { 
             background: white; border-radius: 15px; padding: 30px; margin-bottom: 25px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); display: flex; align-items: flex-start; gap: 20px;
@@ -90,25 +86,25 @@
     </style>
 </head>
 <body>
-     <header>
-    <a href="index.html" class="logo">다나라<span>의원·한의원</span></a>
-    <nav>
-        <ul>
-            <li class="menu-item">
+    <header>
+        <a href="index.html" class="logo">다나라<span>의원·한의원</span></a>
+        <nav>
+            <ul>
                 <li><a href="about.html">병원소개</a></li>
-                <a href="index.html#features">클리닉 ▼</a>
-                <ul class="dropdown">
-                    <li><a href="clinic01.html">척추·관절 통합클리닉</a></li>
-                    <li><a href="clinic02.html">통증클리닉</a></li>
-                    <li><a href="clinic03.html">재활 클리닉</a></li>
-                </ul>
-            </li>
-            <li><a href="index.html#doctor">의료진</a></li>
-            <li><a href="index.html#contact">오시는길</a></li>
-            <li><a href="price.html">비급여 안내</a></li>
-        </ul>
-    </nav>
-</header>
+                <li class="menu-item">
+                    <a href="index.html#features" class="current-menu">클리닉 ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="clinic01.html">척추·관절 통합클리닉</a></li>
+                        <li><a href="clinic02.html">통증클리닉</a></li>
+                        <li><a href="clinic03.html">재활 클리닉</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#doctor">의료진</a></li>
+                <li><a href="index.html#contact">오시는길</a></li>
+                <li><a href="price.html">비급여 안내</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <div class="sub-hero">
         <p>다나라의원·한의원</p>
@@ -177,9 +173,4 @@
         <p>© 2026 Danara Clinic. All Rights Reserved.</p>
     </footer>
 </body>
-
 </html>
-
-
-
-
