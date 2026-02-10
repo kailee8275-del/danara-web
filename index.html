@@ -177,6 +177,33 @@
             .menu-item:hover .dropdown { display: block; }
             .hero { height: 500px; }
         }
+        /* --- 모바일에서 메뉴 겹침 방지 (모든 페이지 공통) --- */
+@media (max-width: 768px) {
+    /* 1. 로고와 메뉴가 위아래로 나오게 해서 공간 확보 */
+    header {
+        flex-direction: column !important;
+        padding: 15px 10px !important;
+    }
+
+    /* 2. 메뉴 글자 크기를 줄이고 줄 바꿈 허용 */
+    nav ul {
+        flex-wrap: wrap !important; /* 공간 부족하면 다음 줄로 */
+        justify-content: center !important;
+        gap: 10px !important;
+        margin-top: 10px !important;
+    }
+
+    nav ul li a {
+        font-size: 14px !important; /* 모바일 전용 작은 글씨 */
+        padding: 5px 2px !important;
+    }
+
+    /* 3. 각 페이지의 제목(H1, H2) 크기 조절 */
+    h1, h2 {
+        font-size: 24px !important;
+        word-break: keep-all; /* 단어 단위로 줄바꿈 */
+    }
+}
     </style>
 </head>
 <body>
@@ -296,6 +323,7 @@
 </body>
 
 </html>
+
 
 
 
