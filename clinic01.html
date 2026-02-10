@@ -31,18 +31,54 @@
 
         /* 드롭다운 메뉴 스타일 */
         .menu-item { position: relative; cursor: pointer; }
-        .dropdown {
-            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
-            background: white; border: 1px solid #eee; border-radius: 8px;
-            width: 200px; box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            opacity: 0; visibility: hidden; transition: 0.3s; padding: 10px 0;
-            list-style: none; z-index: 1001;
-        }
-        .dropdown li { width: 100%; }
-        .dropdown li a { display: block; padding: 12px 20px; font-size: 14px; text-align: center; color: #555 !important; }
-        .dropdown li a:hover { background: #f0f4ff; color: #0044cc !important; }
-        .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+       /* 드롭다운 박스 최종 수정본 */
+.dropdown {
+    position: absolute; 
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%) translateY(10px);
+    background: white; 
+    border: 1px solid #eee; 
+    border-radius: 12px;
+    width: 240px;           /* 너비를 조금 더 넉넉하게 수정 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 10px 0;
+    list-style: none; 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: 0.3s; 
+    z-index: 1001;
+}
 
+/* 드롭다운 안의 리스트 항목 */
+.dropdown li { 
+    width: 100%; 
+    display: block;         /* 항목들이 세로로 차곡차곡 쌓이게 함 */
+}
+
+/* 드롭다운 안의 글자 설정 */
+.dropdown li a { 
+    display: block; 
+    padding: 15px 20px; 
+    font-size: 15px; 
+    text-align: center; 
+    color: #555 !important; 
+    white-space: nowrap;    /* 핵심: 글자가 아래로 떨어지지 않게 한 줄로 고정 */
+    transition: 0.2s;
+}
+
+/* 마우스 올렸을 때 효과 */
+.dropdown li a:hover { 
+    background: #f0f4ff; 
+    color: #0044cc !important; 
+}
+
+/* 부모 메뉴에 마우스 올리면 나타남 */
+.menu-item:hover .dropdown { 
+    opacity: 1; 
+    visibility: visible; 
+    transform: translateX(-50%) translateY(0); 
+}
         /* 상단 히어로 영역 */
         .sub-hero { 
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1559757175-5700dde675bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); 
@@ -174,3 +210,4 @@
     </footer>
 </body>
 </html>
+
