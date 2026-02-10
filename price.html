@@ -20,10 +20,100 @@
         td.price { text-align: right; padding-right: 15px; color: #0044cc; font-weight: 700; }
         .notice { font-size: 13px; color: #777; margin-top: 30px; line-height: 1.8; border-top: 1px solid #eee; padding-top: 20px; }
         .btn-home { display: block; width: 200px; margin: 50px auto 0; text-align: center; background: #0044cc; color: white; padding: 15px; border-radius: 50px; text-decoration: none; font-weight: 700; }
+ /* 메뉴 링크 색상 통일 및 방문 기록 색상 무시 */
+        nav ul { display: flex; gap: 40px; font-weight: 500; list-style: none; margin: 0; padding: 0; align-items: center; }
+        nav ul li a, 
+        nav ul li a:visited, 
+        nav ul li a:active {
+            color: #333 !important; /* 모든 링크 기본 색상을 진한 회색으로 고정 */
+            text-decoration: none !important;
+        }
+
+        /* 마우스 호버 시 색상 */
+        nav ul li a:hover { color: #0044cc !important; }
+
+        /* 현재 페이지(클리닉) 강조 스타일 */
+        .current-menu {
+            color: #0044cc !important; /* 클리닉 메뉴만 파란색으로 강조 */
+            font-weight: 700 !important;
+        }
+
+        /* 드롭다운 메뉴 스타일 */
+        .menu-item { position: relative; cursor: pointer; }
+       /* 드롭다운 박스 최종 수정본 */
+.dropdown {
+    display: block !important; /* 옆으로 나열되는 것을 강제로 막고 세로로 바꿈 */
+    position: absolute;
+    top: 100%; 
+    left: 50%; 
+    transform: translateX(-50%) translateY(10px);
+    background: white; 
+    border: 1px solid #eee; 
+    border-radius: 12px;
+    width: 240px;           /* 너비를 조금 더 넉넉하게 수정 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    padding: 10px 0;
+    list-style: none; 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: 0.3s; 
+    z-index: 1001;
+}
+
+/* 드롭다운 안의 리스트 항목 */
+.dropdown li { 
+    width: 100%; 
+    display: block;         /* 항목들이 세로로 차곡차곡 쌓이게 함 */
+}
+
+/* 드롭다운 안의 글자 설정 */
+.dropdown li a { 
+    display: block !important; 
+    padding: 15px 20px; 
+    font-size: 15px; 
+    text-align: center; 
+    color: #555 !important; 
+    white-space: nowrap;    /* 핵심: 글자가 아래로 떨어지지 않게 한 줄로 고정 */
+    transition: 0.2s;
+}
+
+/* 마우스 올렸을 때 효과 */
+.dropdown li a:hover { 
+    background: #f0f4ff; 
+    color: #0044cc !important; 
+}
+
+/* 부모 메뉴에 마우스 올리면 나타남 */
+.menu-item:hover .dropdown { 
+    opacity: 1; 
+    visibility: visible; 
+    transform: translateX(-50%) translateY(0); 
+}
+
     </style>
 </head>
 <body>
-    <header><a href="index.html" class="logo">다나라<span>의원·한의원</span></a></header>
+    <header>
+        <a href="index.html" class="logo">다나라<span>의원·한의원</span></a>
+        <nav>
+            <ul>
+                <li><a href="about.html">병원소개</a></li>
+                <li class="menu-item">
+                    <a href="index.html#features" class="current-menu">클리닉 ▼</a>
+                    <ul class="dropdown">
+                        <li><a href="clinic01.html">척추·관절 통합클리닉</a></li>
+                        <li><a href="clinic02.html">통증클리닉</a></li>
+                        <li><a href="clinic03.html">재활 클리닉</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#doctor">의료진</a></li>
+                <li><a href="index.html#contact">오시는길</a></li>
+                <li><a href="price.html">비급여 안내</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
     <div class="container">
         <h2>비급여 진료비 고지</h2>
 
@@ -78,4 +168,5 @@
         <a href="index.html" class="btn-home">메인으로 돌아가기</a>
     </div>
 </body>
+
 </html>
