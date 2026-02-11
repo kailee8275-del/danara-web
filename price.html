@@ -6,27 +6,41 @@
     <title>비급여 안내 | 다나라의원·한의원</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* [1] 공통 설정 */
         body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; color: #333; line-height: 1.6; background-color: #f9f9f9; }
-       header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        
+        /* [2] 헤더 및 드롭다운 메뉴 (PC) */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: 700; color: #0044cc; text-decoration: none; }
         .logo span { color: #333; font-weight: 300; }
+
         nav ul { display: flex; gap: 40px; font-weight: 500; list-style: none; margin: 0; padding: 0; align-items: center; }
         nav ul li a, nav ul li a:visited { color: #333 !important; text-decoration: none !important; }
         nav ul li a:hover { color: #0044cc !important; }
         .current-menu { color: #0044cc !important; font-weight: 700 !important; }
+
         .menu-item { position: relative; cursor: pointer; }
-        .dropdown { display: block !important; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px); background: white; border: 1px solid #eee; border-radius: 12px; width: 240px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 10px 0; list-style: none !important; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1001; }
+        .dropdown {
+            display: block !important; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: white; border: 1px solid #eee; border-radius: 12px; width: 240px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 10px 0; list-style: none !important; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1001;
+        }
         .dropdown li { display: block !important; width: 100%; }
         .dropdown li a { display: block !important; padding: 15px 20px; font-size: 15px; text-align: center; color: #555 !important; white-space: nowrap; }
+        .dropdown li a:hover { background: #f0f4ff; color: #0044cc !important; }
         .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
+        /* [3] 콘텐츠 섹션 */
         .price-section { padding: 60px 20px; max-width: 1100px; margin: auto; }
         .main-copy { text-align: center; margin-bottom: 50px; }
-        .main-copy h1 { font-size: 32px; color: #222; }
+        .main-copy h1 { font-size: 32px; color: #222; font-weight: 700; }
+        .main-copy h1::after { content: ''; display: block; width: 50px; height: 3px; background: #0044cc; margin: 15px auto 0; }
         
         .price-group { margin-bottom: 50px; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .category-tag { background: #0044cc; color: white; padding: 4px 12px; font-size: 13px; border-radius: 5px; margin-bottom: 15px; display: inline-block; }
-        .price-group h3 { margin-top: 0; color: #222; font-size: 22px; border-bottom: 2px solid #f0f4ff; padding-bottom: 15px; margin-bottom: 20px; }
+        .price-group h3 { margin-top: 0; color: #222; font-size: 22px; border-bottom: 2px solid #f0f4ff; padding-bottom: 15px; margin-bottom: 20px; font-weight: 700; }
 
         .price-table { width: 100%; border-collapse: collapse; }
         .price-table th { background: #f8f9fa; padding: 15px; border-bottom: 2px solid #dee2e6; text-align: left; font-size: 15px; color: #666; }
@@ -36,12 +50,46 @@
         .price-col { font-weight: 700; color: #333; text-align: right; width: 200px; }
 
         footer { background: #222; color: #aaa; padding: 40px 20px; text-align: center; font-size: 14px; margin-top: 60px; }
-        
+        footer strong { color: white; }
+
+        /* [4] 모바일 전용 가로 메뉴 최적화 (768px 이하) */
         @media (max-width: 768px) {
-            header { padding: 20px; flex-direction: column; gap: 15px; }
-            .price-table th, .price-table td { padding: 10px 5px; font-size: 13px; }
-            .code-col { width: 80px; }
-            .price-col { width: 100px; }
+            header { flex-direction: column !important; padding: 15px 5px !important; height: auto !important; }
+            .logo { font-size: 20px !important; margin-bottom: 15px !important; }
+            
+            nav { width: 100%; }
+            nav ul { 
+                flex-direction: row !important; /* 가로 배열 유지 */
+                flex-wrap: wrap !important;     /* 자리가 부족하면 자동 줄바꿈 */
+                justify-content: center !important; 
+                gap: 8px !important; 
+            }
+            nav ul li a { 
+                font-size: 13px !important; 
+                padding: 5px 3px !important; 
+                white-space: nowrap; 
+            }
+
+            /* 모바일 드롭다운 스타일 조정 */
+            .dropdown {
+                position: absolute !important;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%) translateY(5px);
+                width: 200px !important;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+                display: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+            .menu-item:hover .dropdown { display: block !important; }
+
+            /* 표 레이아웃 미세 조정 */
+            .price-section { padding: 30px 10px; }
+            .price-group { padding: 20px 15px; border-radius: 15px; }
+            .price-table th, .price-table td { padding: 12px 5px; font-size: 12px; }
+            .code-col { width: 80px; font-size: 11px; }
+            .price-col { width: 90px; }
         }
     </style>
 </head>
@@ -69,6 +117,7 @@
     <div class="price-section">
         <div class="main-copy">
             <h1>비급여 진료비 고시 안내</h1>
+            <p style="margin-top: 15px; color: #666;">다나라의원·한의원은 의료법 제45조에 의거하여 비급여 진료비를 투명하게 공개합니다.</p>
         </div>
 
         <div class="price-group">
@@ -177,11 +226,9 @@
     </div>
 
     <footer>
-        <p>© 2026 다나라의원·한의원. All Rights Reserved.</p>
+        <p><strong>다나라의원·한의원</strong> | 서울시 송파구 백제고분로 279</p>
+        <p style="margin-top: 5px;">화, 목 야간진료 (20:30) | 토요일 점심시간 없이 진료</p>
+        <p style="margin-top: 15px; font-size: 12px; opacity: 0.8;">© 2026 Danara Clinic. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
-
-
-
-
