@@ -5,92 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>재활 클리닉 | 다나라의원·한의원</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-     <style>
+    <style>
+        /* [1] 공통 설정 */
         body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; color: #333; line-height: 1.6; background-color: #f4f7fa; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        
+        /* [2] 헤더 및 드롭다운 메뉴 (PC) */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: 700; color: #0044cc; text-decoration: none; }
         .logo span { color: #333; font-weight: 300; }
 
-        /* 메뉴 링크 색상 통일 및 방문 기록 색상 무시 */
         nav ul { display: flex; gap: 40px; font-weight: 500; list-style: none; margin: 0; padding: 0; align-items: center; }
-        nav ul li a, 
-        nav ul li a:visited, 
-        nav ul li a:active {
-            color: #333 !important; /* 모든 링크 기본 색상을 진한 회색으로 고정 */
-            text-decoration: none !important;
-        }
-
-        /* 마우스 호버 시 색상 */
+        nav ul li a, nav ul li a:visited, nav ul li a:active { color: #333 !important; text-decoration: none !important; }
         nav ul li a:hover { color: #0044cc !important; }
 
-        /* 현재 페이지(클리닉) 강조 스타일 */
-        .current-menu {
-            color: #0044cc !important; /* 클리닉 메뉴만 파란색으로 강조 */
-            font-weight: 700 !important;
-        }
+        .current-menu { color: #0044cc !important; font-weight: 700 !important; }
 
-        /* 드롭다운 메뉴 스타일 */
         .menu-item { position: relative; cursor: pointer; }
-       /* 드롭다운 박스 최종 수정본 */
-.dropdown {
-    display: block !important; /* 옆으로 나열되는 것을 강제로 막고 세로로 바꿈 */
-    position: absolute;
-    top: 100%; 
-    left: 50%; 
-    transform: translateX(-50%) translateY(10px);
-    background: white; 
-    border: 1px solid #eee; 
-    border-radius: 12px;
-    width: 240px;           /* 너비를 조금 더 넉넉하게 수정 */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    padding: 10px 0;
-    list-style: none; 
-    opacity: 0; 
-    visibility: hidden; 
-    transition: 0.3s; 
-    z-index: 1001;
-}
+        .dropdown {
+            display: block !important; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: white; border: 1px solid #eee; border-radius: 12px; width: 240px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 10px 0; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1001;
+        }
+        .dropdown li a { display: block !important; padding: 15px 20px; font-size: 15px; text-align: center; color: #555 !important; white-space: nowrap; }
+        .dropdown li a:hover { background: #f0f4ff; color: #0044cc !important; }
+        .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
-/* 드롭다운 안의 리스트 항목 */
-.dropdown li { 
-    width: 100%; 
-    display: block;         /* 항목들이 세로로 차곡차곡 쌓이게 함 */
-}
-
-/* 드롭다운 안의 글자 설정 */
-.dropdown li a { 
-    display: block !important; 
-    padding: 15px 20px; 
-    font-size: 15px; 
-    text-align: center; 
-    color: #555 !important; 
-    white-space: nowrap;    /* 핵심: 글자가 아래로 떨어지지 않게 한 줄로 고정 */
-    transition: 0.2s;
-}
-
-/* 마우스 올렸을 때 효과 */
-.dropdown li a:hover { 
-    background: #f0f4ff; 
-    color: #0044cc !important; 
-}
-
-/* 부모 메뉴에 마우스 올리면 나타남 */
-.menu-item:hover .dropdown { 
-    opacity: 1; 
-    visibility: visible; 
-    transform: translateX(-50%) translateY(0); 
-}
-        
+        /* [3] 서브 히어로 영역 */
         .sub-hero { 
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1576091160550-2173dad99901?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); 
             background-size: cover; background-position: center; height: 350px; 
             display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; 
         }
         .sub-hero h1 { font-size: 32px; margin-bottom: 10px; font-weight: 700; }
-        .sub-hero p { font-size: 18px; opacity: 0.9; max-width: 700px; word-break: keep-all; }
+        .sub-hero p { font-size: 18px; opacity: 0.9; max-width: 700px; word-break: keep-all; padding: 0 20px; }
 
+        /* [4] 콘텐츠 섹션 */
         section { padding: 60px 20px; max-width: 800px; margin: auto; }
-
         .main-copy { text-align: center; margin-bottom: 50px; }
         .main-copy .icon-arrow { font-size: 40px; color: #0044cc; margin-bottom: 10px; display: block; }
         .main-copy h2 { font-size: 26px; color: #222; line-height: 1.4; font-weight: 700; word-break: keep-all; }
@@ -106,10 +58,7 @@
         .card-content h3 { font-size: 22px; margin: 0 0 15px 0; color: #e74c3c; font-weight: 700; }
         .card-content p { margin: 0; color: #555; font-size: 16px; word-break: keep-all; line-height: 1.7; }
 
-        .notice-box { 
-            background: #eef2ff; padding: 25px; border-radius: 15px; margin-top: 40px; 
-            border-left: 5px solid #0044cc; font-size: 15px; color: #0044cc; line-height: 1.7; text-align: center;
-        }
+        .notice-box { background: #eef2ff; padding: 25px; border-radius: 15px; margin-top: 40px; border-left: 5px solid #0044cc; font-size: 15px; color: #0044cc; line-height: 1.7; text-align: center; }
 
         .btn-home { 
             display: block; width: 220px; margin: 50px auto 0; text-align: center; 
@@ -120,10 +69,51 @@
 
         footer { background: #222; color: #aaa; padding: 40px 20px; text-align: center; font-size: 14px; margin-top: 60px; }
 
+        /* [5] 모바일 전용 가로 메뉴 및 레이아웃 최적화 (768px 이하) */
         @media (max-width: 768px) {
-            .sub-hero h1 { font-size: 26px; }
-            .main-copy h2 { font-size: 22px; }
-            .treatment-card { flex-direction: column; padding: 25px; }
+            header { flex-direction: column !important; padding: 15px 5px !important; height: auto !important; }
+            .logo { font-size: 20px !important; margin-bottom: 15px !important; }
+            
+            nav { width: 100%; }
+            nav ul { 
+                flex-direction: row !important; /* 가로 정렬 강제 */
+                flex-wrap: wrap !important;     /* 자리가 부족하면 자동 줄바꿈 */
+                justify-content: center !important; 
+                gap: 8px !important; 
+            }
+            nav ul li a { 
+                font-size: 13px !important; 
+                padding: 5px 3px !important; 
+                white-space: nowrap; 
+            }
+
+            /* 모바일 드롭다운 스타일 조정 */
+            .dropdown {
+                position: absolute !important;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%) translateY(5px);
+                width: 200px !important;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+                display: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+            .menu-item:hover .dropdown { display: block !important; }
+
+            .sub-hero { height: 300px; }
+            .sub-hero h1 { font-size: 24px; }
+            .sub-hero p { font-size: 14px; line-height: 1.5; }
+
+            .main-copy h2 { font-size: 20px; padding: 0 10px; }
+            
+            .treatment-card { 
+                flex-direction: column; /* 아이콘과 텍스트를 상하로 배치 */
+                padding: 20px; 
+                border-left-width: 4px;
+            }
+            .card-content h3 { font-size: 19px; }
+            .card-content p { font-size: 15px; }
         }
     </style>
 </head>
@@ -151,7 +141,7 @@
     <div class="sub-hero">
         <p>다나라의원·한의원</p>
         <h1>재활 클리닉</h1>
-        <p style="margin-top:20px; font-size:16px;">다나라는 전문 의료진과 재활, 트레이닝팀이 협력하여 손상 부위의 기능 회복과 재발 방지 및 일상으로의 복귀를 목표로 합니다. 전문 스포츠 선수들의 경기력 향상을 도울 수 있는 시스템이 준비되어 있습니다.</p>
+        <p>다나라는 전문 의료진과 재활 트레이닝팀이 협력하여 기능 회복과 재발 방지 및 일상 복귀를 목표로 합니다. 전문 스포츠 선수를 위한 경기력 향상 시스템이 준비되어 있습니다.</p>
     </div>
 
     <section>
@@ -164,7 +154,7 @@
             <div class="card-icon">▶</div>
             <div class="card-content">
                 <h3>스포츠 재활 클리닉</h3>
-                <p>전문 엘리트 및 프로 운동선수, 유소년 선수, 일반 생활체육인들의 손상 부위 기능 회복 및 경기력 향상을 위한 다나라만의 전문 의료진 및 트레이닝 팀을 운영하고 있습니다. 의료진의 정확한 진단과 재생 치료, 트레이닝 팀의 전문적인 재활 프로그램을 경험해 보실 수 있습니다.</p>
+                <p>전문 엘리트 및 프로 선수, 유소년 선수들을 위한 전문 팀을 운영합니다. 의료진의 정확한 진단과 재생 치료, 트레이닝 팀의 전문 재활 프로그램을 통해 경기력 향상을 돕습니다.</p>
             </div>
         </div>
 
@@ -172,15 +162,15 @@
             <div class="card-icon">▶</div>
             <div class="card-content">
                 <h3>수술 후 재활 클리닉</h3>
-                <p>각종 척추, 관절 수술 이후 약해진 수술 부위의 기능 회복 및 강화에 필요한 다나라만의 특수 재활 프로그램. 수술 후 기동이 불편한 환자를 위한 입원을 통한 집중 재활 치료도 가능하며 다나라의 오랜 시간 누적된 많은 재활 환자들의 케이스를 바탕으로 나이, 체격, 환자 상태에 따른 가장 적합한 재활 프로그램을 제공합니다.</p>
+                <p>척추 및 관절 수술 후 약해진 부위의 기능 강화 프로그램입니다. 많은 재활 케이스를 바탕으로 나이와 상태에 가장 적합한 1:1 맞춤형 집중 재활 서비스를 제공합니다.</p>
             </div>
         </div>
 
         <div class="treatment-card">
             <div class="card-icon">▶</div>
             <div class="card-content">
-                <h3>교통사고, 산재 재활 클리닉</h3>
-                <p>교통사고나 산재 환자의 경우 치료에 제한이 생기는 경우가 많습니다. 하지만 다나라는 양·한방 협진을 통해 환자분이 보험을 통해 받을 수 있는 모든 치료를 제공합니다.</p>
+                <h3>교통사고 · 산재 재활 클리닉</h3>
+                <p>양·한방 협진을 통해 환자분이 보험을 통해 받을 수 있는 모든 치료(침, 부항, 도수치료 등)를 제공하여 사고 후유증 없는 빠른 회복을 지원합니다.</p>
             </div>
         </div>
 
@@ -195,6 +185,4 @@
         <p>© 2026 Danara Clinic. All Rights Reserved.</p>
     </footer>
 </body>
-
 </html>
-
