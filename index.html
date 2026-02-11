@@ -102,23 +102,51 @@
         footer strong { color: white; }
 
         /* [5] 모바일 최종 통합 최적화 (768px 이하) */
-        @media (max-width: 768px) {
-            header { flex-direction: column !important; padding: 15px 10px !important; height: auto !important; }
-            .logo { font-size: 20px !important; margin-bottom: 10px; }
-            nav ul { flex-wrap: wrap !important; justify-content: center !important; gap: 8px !important; margin-top: 5px !important; }
-            nav ul li a { font-size: 13px !important; padding: 5px !important; }
-
-            .hero { height: 450px !important; }
-            .hero-content h2 { font-size: 1.8rem !important; margin-bottom: 10px !important; word-break: keep-all; }
-            .hero-content p { font-size: 1rem !important; margin-bottom: 15px !important; line-height: 1.4 !important; }
-
-            .feature-item { width: 100% !important; max-width: 280px; padding: 30px 20px !important; }
-            .doctor-card { min-width: 100% !important; padding: 30px 20px !important; }
+      @media (max-width: 768px) {
+            header { 
+                flex-direction: column !important; 
+                padding: 15px 10px !important; 
+                height: auto !important; 
+            }
             
-            .dropdown { position: static !important; transform: none !important; width: 100% !important; display: none !important; box-shadow: none !important; border: 1px solid #f0f4ff !important; margin-top: 5px; }
-            .menu-item:hover .dropdown { display: block !important; }
-            
-            h1, h2 { font-size: 24px !important; word-break: keep-all; }
+            nav ul { 
+                flex-direction: column !important; /* 가로가 아닌 세로로 정렬 */
+                width: 100%;
+                gap: 5px !important;
+                margin-top: 10px !important;
+            }
+
+            /* 핵심: 드롭다운이 펼쳐질 때 주변을 밀어내도록 설정 */
+            .menu-item { 
+                width: 100%; 
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .dropdown {
+                position: static !important; /* 공중에 띄우지 않고 자리를 차지하게 함 */
+                transform: none !important;
+                width: 100% !important;
+                max-width: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+                display: none !important; /* 클릭(혹은 호버) 전엔 숨김 */
+                box-shadow: none !important;
+                background: #f8f9fa !important; /* 드롭다운 배경색 차별화 */
+                border-radius: 8px;
+                margin-top: 10px;
+            }
+
+            /* 메뉴에 마우스 올리거나 터치 시 드롭다운 표시 */
+            .menu-item:hover .dropdown {
+                display: block !important;
+            }
+
+            .dropdown li a {
+                padding: 12px !important;
+                font-size: 14px !important;
+                border-bottom: 1px solid #eee;
+            }
         }
     </style>
 </head>
@@ -233,3 +261,4 @@
 
 </body>
 </html>
+
