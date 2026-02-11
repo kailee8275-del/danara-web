@@ -6,81 +6,33 @@
     <title>척추·관절 통합클리닉 | 다나라의원·한의원</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* [1] 공통 설정 */
         body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; color: #333; line-height: 1.6; background-color: #f4f7fa; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        
+        /* [2] 헤더 및 드롭다운 메뉴 (PC) */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: 700; color: #0044cc; text-decoration: none; }
         .logo span { color: #333; font-weight: 300; }
 
-        /* 메뉴 링크 색상 통일 및 방문 기록 색상 무시 */
         nav ul { display: flex; gap: 40px; font-weight: 500; list-style: none; margin: 0; padding: 0; align-items: center; }
-        nav ul li a, 
-        nav ul li a:visited, 
-        nav ul li a:active {
-            color: #333 !important; /* 모든 링크 기본 색상을 진한 회색으로 고정 */
-            text-decoration: none !important;
-        }
-
-        /* 마우스 호버 시 색상 */
+        nav ul li a, nav ul li a:visited, nav ul li a:active { color: #333 !important; text-decoration: none !important; }
         nav ul li a:hover { color: #0044cc !important; }
 
-        /* 현재 페이지(클리닉) 강조 스타일 */
-        .current-menu {
-            color: #0044cc !important; /* 클리닉 메뉴만 파란색으로 강조 */
-            font-weight: 700 !important;
-        }
+        .current-menu { color: #0044cc !important; font-weight: 700 !important; }
 
-        /* 드롭다운 메뉴 스타일 */
         .menu-item { position: relative; cursor: pointer; }
-       /* 드롭다운 박스 최종 수정본 */
-.dropdown {
-    display: block !important; /* 옆으로 나열되는 것을 강제로 막고 세로로 바꿈 */
-    position: absolute;
-    top: 100%; 
-    left: 50%; 
-    transform: translateX(-50%) translateY(10px);
-    background: white; 
-    border: 1px solid #eee; 
-    border-radius: 12px;
-    width: 240px;           /* 너비를 조금 더 넉넉하게 수정 */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    padding: 10px 0;
-    list-style: none; 
-    opacity: 0; 
-    visibility: hidden; 
-    transition: 0.3s; 
-    z-index: 1001;
-}
+        .dropdown {
+            display: block !important; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: white; border: 1px solid #eee; border-radius: 12px; width: 240px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 10px 0; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1001;
+        }
+        .dropdown li a { display: block !important; padding: 15px 20px; font-size: 15px; text-align: center; color: #555 !important; white-space: nowrap; }
+        .dropdown li a:hover { background: #f0f4ff; color: #0044cc !important; }
+        .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
-/* 드롭다운 안의 리스트 항목 */
-.dropdown li { 
-    width: 100%; 
-    display: block;         /* 항목들이 세로로 차곡차곡 쌓이게 함 */
-}
-
-/* 드롭다운 안의 글자 설정 */
-.dropdown li a { 
-    display: block !important; 
-    padding: 15px 20px; 
-    font-size: 15px; 
-    text-align: center; 
-    color: #555 !important; 
-    white-space: nowrap;    /* 핵심: 글자가 아래로 떨어지지 않게 한 줄로 고정 */
-    transition: 0.2s;
-}
-
-/* 마우스 올렸을 때 효과 */
-.dropdown li a:hover { 
-    background: #f0f4ff; 
-    color: #0044cc !important; 
-}
-
-/* 부모 메뉴에 마우스 올리면 나타남 */
-.menu-item:hover .dropdown { 
-    opacity: 1; 
-    visibility: visible; 
-    transform: translateX(-50%) translateY(0); 
-}
-        /* 상단 히어로 영역 */
+        /* [3] 서브 히어로 영역 */
         .sub-hero { 
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1559757175-5700dde675bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); 
             background-size: cover; background-position: center; height: 350px; 
@@ -89,6 +41,7 @@
         .sub-hero h1 { font-size: 32px; margin-bottom: 10px; font-weight: 700; }
         .sub-hero p { font-size: 18px; opacity: 0.9; }
 
+        /* [4] 콘텐츠 섹션 */
         section { padding: 60px 20px; max-width: 800px; margin: auto; }
         .main-copy { text-align: center; margin-bottom: 50px; }
         .main-copy .icon-arrow { font-size: 40px; color: #0044cc; margin-bottom: 10px; display: block; }
@@ -115,10 +68,51 @@
 
         footer { background: #222; color: #aaa; padding: 40px 20px; text-align: center; font-size: 14px; margin-top: 60px; }
 
+        /* [5] 모바일 전용 가로 메뉴 및 레이아웃 최적화 (768px 이하) */
         @media (max-width: 768px) {
-            .sub-hero h1 { font-size: 26px; }
-            .main-copy h2 { font-size: 22px; }
-            .treatment-card { flex-direction: column; padding: 25px; }
+            header { flex-direction: column !important; padding: 15px 5px !important; height: auto !important; }
+            .logo { font-size: 20px !important; margin-bottom: 15px !important; }
+            
+            nav { width: 100%; }
+            nav ul { 
+                flex-direction: row !important; /* 가로 정렬 */
+                flex-wrap: wrap !important;     /* 자동 줄바꿈 */
+                justify-content: center !important; 
+                gap: 8px !important; 
+            }
+            nav ul li a { 
+                font-size: 13px !important; 
+                padding: 5px 3px !important; 
+                white-space: nowrap; 
+            }
+
+            /* 모바일 드롭다운 스타일 조정 */
+            .dropdown {
+                position: absolute !important;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%) translateY(5px);
+                width: 200px !important;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+                display: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+            .menu-item:hover .dropdown { display: block !important; }
+
+            .sub-hero { height: 250px; }
+            .sub-hero h1 { font-size: 24px; }
+            .sub-hero p { font-size: 16px; }
+
+            .main-copy h2 { font-size: 20px; padding: 0 10px; }
+            
+            .treatment-card { 
+                flex-direction: column; /* 아이콘과 텍스트를 위아래로 */
+                padding: 20px; 
+                border-left-width: 4px;
+            }
+            .card-content h3 { font-size: 19px; }
+            .card-content p { font-size: 15px; }
         }
     </style>
 </head>
@@ -159,7 +153,7 @@
             <div class="card-content">
                 <h3>프롤로 주사치료</h3>
                 <p>손상된 인대나 근육의 재생을 촉진하여 관절 손상으로 인한 통증과 기능 저하를 회복시킵니다.</p>
-                <span class="treatment-period">치료 주기: 주 1회 / 기간: 약6~8주</span>
+                <span class="treatment-period">치료 주기: 주 1회 / 기간: 약 6~8주</span>
             </div>
         </div>
 
@@ -167,7 +161,7 @@
             <div class="card-icon">▶</div>
             <div class="card-content">
                 <h3>신경차단술</h3>
-                <p>일반 신경차단술과는 조금 다른 민감해진 신경을 정상화하고 포착된 신경을 풀어주는 치료입니다. 목, 허리등 척추질환, 사지 관절의 이상감각 및 통증치료에 효과적입니다. 스테로이드의 사용 없이 다나라의 독창적인 치료 방식으로 부작용을 최소화 합니다.</p>
+                <p>민감해진 신경을 정상화하고 포착된 신경을 풀어주는 치료입니다. 스테로이드 사용 없이 다나라만의 독창적인 치료 방식으로 부작용을 최소화하여 척추 및 관절 통증을 치료합니다.</p>
             </div>
         </div>
 
@@ -175,7 +169,7 @@
             <div class="card-icon">▶</div>
             <div class="card-content">
                 <h3>체외 충격파 치료 (ESWT)</h3>
-                <p>손상된 근육, 인대의 재생을 촉진합니다. 어린이 환자(주사치료가 어려운 경우)나 프롤로 주사치료만으로 회복이 더딘 경우 프롤로주사와 병행합니다.</p>
+                <p>손상된 근육과 인대의 재생을 촉진합니다. 주사 치료가 어려운 어린이나 회복이 더딘 경우 프롤로 주사치료와 병행하여 효과를 높입니다.</p>
             </div>
         </div>
 
@@ -183,7 +177,7 @@
             <div class="card-icon">▶</div>
             <div class="card-content">
                 <h3>도수치료</h3>
-                <p>주사치료와 병행하여 통증을 제어하고, 이후 지속되는 운동 범위 제한 및 기능 저하를 개선합니다. 다나라의 운동, 재활프로그램으로 정상적인 일상으로의 복귀를 돕습니다. </p>
+                <p>전문 물리치료사의 손을 통해 통증을 제어하고 운동 범위를 개선합니다. 다나라의 맞춤형 재활 프로그램으로 일상 복귀를 돕습니다.</p>
             </div>
         </div>
 
@@ -191,7 +185,7 @@
             <div class="card-icon">▶</div>
             <div class="card-content">
                 <h3>원백 고주파 & 크라이오 치료</h3>
-                <p>급성 손상 부위의 염증 반응을 완화하고 부종을 줄여, 환자의 초기 불편감을 빠르게 개선합니다.</p>
+                <p>급성 손상 부위의 염증을 완화하고 부종을 줄여 초기 통증과 불편감을 빠르게 개선하는 특수 장비 치료입니다.</p>
             </div>
         </div>
 
@@ -199,7 +193,7 @@
             <div class="card-icon">▶</div>
             <div class="card-content">
                 <h3>침·부항 치료</h3>
-                <p>관절주위 C-fiber신경의 민감도를 완화하고, 근육의 이완과 혈류 개선을 통해 손상 부위 회복을 촉진합니다. 혈액 내 치료물질의 순환을 도와 재생을 강화하며, 다른 치료들과 병행할 때 효과가 높습니다. 몸에 무리가 없는 치료로 자주 내원하여 시행할 수 있어 환자의 상태변화에 대한 의료진의 면밀한 판단에도 도움을 줍니다.</p>
+                <p>근육의 이완과 혈류 개선을 통해 손상 부위의 회복을 촉진합니다. 양방 치료와 병행 시 혈액 순환을 도와 재생 효과를 강화합니다.</p>
             </div>
         </div>
 
@@ -211,6 +205,3 @@
     </footer>
 </body>
 </html>
-
-
-
