@@ -6,174 +6,101 @@
     <title>병원소개 | 다나라의원·한의원</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
-        /* 공통 설정 */
+        /* [1] 기본 설정 */
         body { margin: 0; padding: 0; font-family: 'Noto Sans KR', sans-serif; color: #333; line-height: 1.6; }
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; padding: 0; margin: 0; }
         
-       /* 헤더 및 드롭다운 (수정됨) */
-        header {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 20px 50px; background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000;
-        }
-        .logo { font-size: 24px; font-weight: 700; color: #0044cc; }
+        /* [2] 헤더 및 드롭다운 메뉴 (PC) */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: 700; color: #0044cc; text-decoration: none; }
         .logo span { color: #333; font-weight: 300; }
 
-           /* 메뉴 링크 색상 통일 및 방문 기록 색상 무시 */
         nav ul { display: flex; gap: 40px; font-weight: 500; list-style: none; margin: 0; padding: 0; align-items: center; }
-        nav ul li a, 
-        nav ul li a:visited, 
-        nav ul li a:active {
-            color: #333 !important; /* 모든 링크 기본 색상을 진한 회색으로 고정 */
-            text-decoration: none !important;
-        }
-
-        /* 마우스 호버 시 색상 */
+        nav ul li a, nav ul li a:visited, nav ul li a:active { color: #333 !important; text-decoration: none !important; }
         nav ul li a:hover { color: #0044cc !important; }
 
-        /* 현재 페이지(클리닉) 강조 스타일 */
-        .current-menu {
-            color: #0044cc !important; /* 클리닉 메뉴만 파란색으로 강조 */
-            font-weight: 700 !important;
-        }
-
-        /* 드롭다운 메뉴 스타일 */
         .menu-item { position: relative; cursor: pointer; }
-       /* 드롭다운 박스 최종 수정본 */
-.dropdown {
-    display: block !important; /* 옆으로 나열되는 것을 강제로 막고 세로로 바꿈 */
-    position: absolute;
-    top: 100%; 
-    left: 50%; 
-    transform: translateX(-50%) translateY(10px);
-    background: white; 
-    border: 1px solid #eee; 
-    border-radius: 12px;
-    width: 240px;           /* 너비를 조금 더 넉넉하게 수정 */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    padding: 10px 0;
-    list-style: none; 
-    opacity: 0; 
-    visibility: hidden; 
-    transition: 0.3s; 
-    z-index: 1001;
-}
-
-/* 드롭다운 안의 리스트 항목 */
-.dropdown li { 
-    width: 100%; 
-    display: block;         /* 항목들이 세로로 차곡차곡 쌓이게 함 */
-}
-
-/* 드롭다운 안의 글자 설정 */
-.dropdown li a { 
-    display: block !important; 
-    padding: 15px 20px; 
-    font-size: 15px; 
-    text-align: center; 
-    color: #555 !important; 
-    white-space: nowrap;    /* 핵심: 글자가 아래로 떨어지지 않게 한 줄로 고정 */
-    transition: 0.2s;
-}
-
-/* 마우스 올렸을 때 효과 */
-.dropdown li a:hover { 
-    background: #f0f4ff; 
-    color: #0044cc !important; 
-}
-
-/* 부모 메뉴에 마우스 올리면 나타남 */
-.menu-item:hover .dropdown { 
-    opacity: 1; 
-    visibility: visible; 
-    transform: translateX(-50%) translateY(0); 
-}
-
-        /* 서브 페이지 상단 배너 */
-        .sub-hero {
-            /* 배경 이미지를 더 차분한 느낌으로 교체 */
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+        .dropdown {
+            display: block !important; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: white; border: 1px solid #eee; border-radius: 12px; width: 240px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 10px 0; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1001;
         }
-        .sub-hero h1 { font-size: 40px; font-weight: 700; letter-spacing: -1px;}
+        .dropdown li a { display: block !important; padding: 15px 20px; font-size: 15px; text-align: center; color: #555 !important; white-space: nowrap; }
+        .dropdown li a:hover { background: #f0f4ff; color: #0044cc !important; }
+        .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
-        /* 섹션 공통 */
+        /* [3] 서브 배너 */
+        .sub-hero { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; height: 300px; display: flex; align-items: center; justify-content: center; color: white; }
+        .sub-hero h1 { font-size: 40px; font-weight: 700; letter-spacing: -1px; }
+
+        /* [4] 섹션 공통 스타일 */
         section { padding: 80px 20px; max-width: 1000px; margin: auto; }
-        .section-title { font-size: 32px; font-weight: 700; margin-bottom: 40px; text-align: center; color: #222; }
+        .section-title { font-size: 32px; font-weight: 700; margin-bottom: 40px; text-align: center; color: #222; position: relative; }
         .section-title::after { content: ''; display: block; width: 50px; height: 3px; background: #0044cc; margin: 15px auto 0; }
 
-        /* 1. 인사말 */
-        .greetings { text-align: center; }
-        .greetings h3 { font-size: 26px; color: #0044cc; margin-bottom: 30px; font-weight: 700; word-break: keep-all;}
-        .greetings p { font-size: 1.1em; color: #555; margin-bottom: 20px; word-break: keep-all; line-height: 1.8; }
+        .greetings h3 { font-size: 26px; color: #0044cc; text-align: center; margin-bottom: 30px; }
+        .greetings p { font-size: 1.1em; color: #555; text-align: center; word-break: keep-all; }
 
-        /* 2. 진료철학 */
-        .philosophy { background-color: #f0f2f5; width: 100%; padding: 80px 20px; }
-        .philo-container { max-width: 1000px; margin: auto; text-align: center; }
-        
-        /* [추가됨] 진료철학 강조 문구 */
-        .philo-intro { 
-            font-size: 1.2em; color: #444; margin-bottom: 50px; 
-            word-break: keep-all; font-weight: 500; line-height: 1.6;
-        }
-        .philo-intro strong { color: #0044cc; font-weight: 700; }
+        .philosophy { background-color: #f0f2f5; padding: 80px 20px; text-align: center; }
+        .philo-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
+        .philo-item { background: white; padding: 40px 25px; width: 260px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
 
-        .philo-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; }
-        .philo-item { 
-            background: white; padding: 40px 25px; width: 260px; 
-            border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s;
-        }
-        .philo-item:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,44,155,0.1); }
-        .philo-icon { font-size: 45px; margin-bottom: 20px; display: block; }
-        .philo-item h4 { font-size: 22px; margin-bottom: 15px; color: #222; font-weight: 700; }
-        .philo-item p { color: #666; font-size: 1em; line-height: 1.6; word-break: keep-all; }
-
-        /* 3. 진료시간 & 오시는 길 */
-        .info-grid { display: flex; gap: 40px; margin-top: 30px; align-items: stretch; }
+        .info-grid { display: flex; gap: 40px; margin-top: 30px; }
         .info-box { flex: 1; background: #f8f9fa; padding: 40px; border-radius: 20px; border: 1px solid #eee; }
-        .info-box h3 { font-size: 24px; margin-bottom: 25px; color: #0044cc; font-weight: 700; display: flex; align-items: center; gap: 10px;}
-        
-        /* 진료시간 테이블 */
         table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
-        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #eee; }
-        th { color: #555; font-weight: 500; width: 110px; background: #fff; border-radius: 5px 0 0 5px; padding-left: 15px;}
-        td { color: #333; font-weight: 700; background: #fff; border-radius: 0 5px 5px 0;}
+        th, td { padding: 10px; text-align: left; background: #fff; }
         .closed { color: #e74c3c; }
+        .map-img { width: 100%; height: auto; border-radius: 10px; }
 
-        /* [수정됨] 오시는 길 약도 이미지 */
-        .map-img { 
-            width: 100%; height: auto; /* 가로 꽉 채우고 높이 자동 */
-            border-radius: 10px; border: 1px solid #ddd; 
-            box-shadow: 0 5px 10px rgba(0,0,0,0.05);
-        }
-
-        /* 푸터 */
         footer { background: #222; color: #aaa; padding: 50px 20px; text-align: center; font-size: 14px; margin-top: 80px; }
-        footer strong { color: white; }
 
+        /* [5] 모바일 가로 메뉴 최적화 (768px 이하) */
         @media (max-width: 768px) {
-            header { padding: 15px; flex-direction: column; gap: 10px; }
+            header { flex-direction: column !important; padding: 15px 5px !important; height: auto !important; }
+            .logo { font-size: 20px !important; margin-bottom: 15px !important; }
+            
+            nav { width: 100%; }
+            nav ul { 
+                flex-direction: row !important; /* 가로 정렬 강제 */
+                flex-wrap: wrap !important;     /* 자리가 부족하면 다음 줄로 */
+                justify-content: center !important; 
+                gap: 8px !important; 
+            }
+            nav ul li a { 
+                font-size: 13px !important; 
+                padding: 5px 3px !important; 
+                white-space: nowrap; 
+            }
+
+            /* 모바일 드롭다운 스타일 조정 */
+            .dropdown {
+                position: absolute !important;
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%) translateY(5px);
+                width: 200px !important;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+                display: none !important;
+                opacity: 1 !important;
+                visibility: visible !important;
+            }
+            .menu-item:hover .dropdown { display: block !important; }
+
+            .sub-hero { height: 180px; }
+            .sub-hero h1 { font-size: 28px; }
             .info-grid { flex-direction: column; }
-            .sub-hero h1 { font-size: 30px; }
-            .greetings h3 { font-size: 22px; }
-            .philo-intro { font-size: 1.1em; padding: 0 10px; }
+            .info-box { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
-        <header>
+    <header>
         <a href="index.html" class="logo">다나라<span>의원·한의원</span></a>
         <nav>
             <ul>
-                <li><a href="about.html" class="current-menu">병원소개</a></li>
+                <li><a href="about.html" style="color:#0044cc !important; font-weight:700;">병원소개</a></li>
                 <li class="menu-item">
                     <a href="index.html#features">클리닉 ▼</a>
                     <ul class="dropdown">
@@ -196,48 +123,29 @@
     <section class="greetings">
         <h2 class="section-title">인사말</h2>
         <h3>"환자의 마음까지 치유하는 다나라입니다"</h3>
-        <p>
-            다나라의원·한의원은 의학적 진단과 통합의학적 치료의 장점을 결합하여<br>
-            가장 안전하고 효과적인 비수술 통합 치료를 제공합니다.
-        </p>
-        <p>
-            단순히 통증만 없애는 것이 아니라,<br>
-            통증의 근본 원인을 찾아 해결하고 환자분이 이전의 신체능력을 회복하도록 하는 것이 저희의 목표입니다.
-        </p>
-        <p>
-            두 명의 복수면허 의사가 여러분의 건강한 삶을 위해<br>
-            계속해서 연구하고 노력하겠습니다.<br>
-            여러분이 통증에서 벗어나 재활이 마무리 될 때까지 함께하겠습니다.
-        </p>
-        <br>
-        <p style="font-weight: 700; font-size: 1.1em;">대표원장 지창윤 · 이광은</p>
+        <p>다나라의원·한의원은 의학적 진단과 통합의학적 치료의 장점을 결합하여 가장 안전하고 효과적인 비수술 통합 치료를 제공합니다.</p>
+        <p>단순히 통증만 없애는 것이 아니라, 통증의 근본 원인을 찾아 해결하고 환자분이 이전의 신체능력을 회복하도록 하는 것이 저희의 목표입니다.</p>
+        <p style="font-weight: 700; font-size: 1.1em; margin-top:30px;">대표원장 지창윤 · 이광은</p>
     </section>
 
     <div class="philosophy">
         <div class="philo-container">
             <h2 class="section-title">진료 철학</h2>
-            
-            <p class="philo-intro">
-                "양·한방 통합진료를 표방하는 곳은 많지만,<br>
-                <strong>진정한 통합 의학의 깊이</strong>는 다릅니다.<br>
-                다나라에서만 경험할 수 있는 <strong>차별화된 진료 철학</strong>을 약속합니다."
-            </p>
-
             <div class="philo-grid">
                 <div class="philo-item">
-                    <span class="philo-icon">🎯</span>
+                    <span style="font-size:40px;">🎯</span>
                     <h4>정확한 진단</h4>
-                    <p>첨단 초음파 장비(RMSK)와<br>의학적 검사(MRI, Xray 판독)을 통해<br>원인을 정확히 파악합니다.</p>
+                    <p>첨단 초음파 장비와 의학적 검사를 통해 원인을 정확히 파악합니다.</p>
                 </div>
                 <div class="philo-item">
-                    <span class="philo-icon">🌿</span>
+                    <span style="font-size:40px;">🌿</span>
                     <h4>근본적 치료</h4>
-                    <p>스테로이드 사용을 줄이고<br>원인을 치유하는 양·한방 통합요법으로<br>신체 자생력을 높입니다.</p>
+                    <p>스테로이드 사용을 줄이고 신체 자생력을 높이는 양·한방 통합요법을 시행합니다.</p>
                 </div>
                 <div class="philo-item">
-                    <span class="philo-icon">🤝</span>
+                    <span style="font-size:40px;">🤝</span>
                     <h4>공감과 소통</h4>
-                    <p>환자의 아픔을 내 가족처럼<br>공감하며 충분히 설명하고<br>진심으로 소통합니다.</p>
+                    <p>환자의 아픔을 가족처럼 공감하며 진심으로 소통합니다.</p>
                 </div>
             </div>
         </div>
@@ -248,62 +156,25 @@
             <div class="info-box">
                 <h3>⏰ 진료시간 안내</h3>
                 <table>
-                    <tr>
-                        <th>평  일</th>
-                        <td>09:30 - 18:30<br>(화, 목 야간진료 20:30)</td>
-                    </tr>
-                    <tr>
-                        <th>토요일</th>
-                        <td>09:30 - 14:00</td>
-                    </tr>
-                    <tr>
-                        <th>점심시간</th>
-                        <td>13:00 - 14:00</td>
-                    </tr>
-                    <tr>
-                        <th>법정공휴일</th>
-                        <td>10:00 - 13:00</td>
-                    </tr>
-                    <tr>
-                        <th>휴무일</th>
-                        <td class="closed">일요일</td>
-                    </tr>
+                    <tr><th>평 일</th><td>09:30 - 18:30 (화, 목 20:30)</td></tr>
+                    <tr><th>토요일</th><td>09:30 - 14:00</td></tr>
+                    <tr><th>점심시간</th><td>13:00 - 14:00</td></tr>
+                    <tr><th>휴무일</th><td class="closed">일요일 / 공휴일</td></tr>
                 </table>
-                <p style="margin-top: 20px; font-size: 0.9em; color: #666; background: #fff; padding: 15px; border-radius: 10px;">
-                    * 토요일은 점심시간 없이 진료합니다.<br>
-                    * 마감 30분 전까지 접수 가능합니다.
-                </p>
             </div>
-
             <div class="info-box">
                 <h3>📍 오시는 길</h3>
-                <p style="font-size: 1.1em; font-weight: 700; margin-bottom: 10px;">
-                    서울시 송파구 백제고분로 279<br>B1, 2, 3, 4, 5층
-                </p>
-                <p style="color: #666; margin-bottom: 25px;">
-                    (9호선 석촌고분역 3번 출구 도보 3분)
-                </p>
-                
-                <img src="오시는길.jpg" alt="다나라의원·한의원 약도" class="map-img">
-
+                <p style="font-weight:700;">서울시 송파구 백제고분로 279</p>
+                <p style="color:#666; font-size:14px;">(9호선 석촌고분역 3번 출구 도보 3분)</p>
+                <img src="오시는길.jpg" alt="다나라의원·한의원 약도" class="map-img" style="margin-top:15px;">
             </div>
         </div>
     </section>
 
     <footer>
-        <p><strong>다나라의원·한의원</strong> | 대표자: 지창윤, 이광은</p>
-        <p>서울시 송파구 백제고분로279 B1,2,3,4,5층</p>
-        <p>Email: sspjs1@naver.com</p>
-        <br>
+        <p><strong>다나라의원·한의원</strong> | 서울시 송파구 백제고분로 279</p>
         <p>© 2026 Danara Clinic. All Rights Reserved.</p>
     </footer>
 
 </body>
-
 </html>
-
-
-
-
-
-
