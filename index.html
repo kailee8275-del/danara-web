@@ -86,6 +86,20 @@
                 padding: 5px 3px !important; 
                 white-space: nowrap; 
             }
+            /* [수정] 메인 배너(Hero) 가독성 및 줄바꿈 해결 */
+            .hero { height: 500px; }
+            .hero-content h2 { 
+                font-size: 24px !important; 
+                word-break: keep-all !important; /* "통증을", "수술 없이" 단어가 잘리지 않게 함 */
+                line-height: 1.4 !important;
+                padding: 0 15px;
+            }
+            .slide3 .hero-content p {
+        font-size: 16px !important; 
+        font-weight: 700 !important;
+        color: #ffcc00 !important; /* 노란색으로 변경 */
+        text-shadow: 0 2px 12px rgba(0,0,0,1) !important;
+    }
 
             /* 모바일 드롭다운 스타일 조정 */
             .dropdown {
@@ -124,7 +138,7 @@
         <div class="logo">다나라<span>의원·한의원</span></div>
         <nav>
             <ul>
-                <li><a href="about.html" style="color:#0044cc !important; font-weight:700;">병원소개</a></li>
+                <li><a href="about.html">병원소개</a></li>
                 <li class="menu-item">
                     <a href="index.html#features">클리닉 ▼</a>
                     <ul class="dropdown">
@@ -230,5 +244,6 @@
 
 </body>
 </html>
+
 
 
