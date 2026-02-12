@@ -25,7 +25,6 @@
 
         .current-menu { color: #0044cc !important; font-weight: 700 !important; }
 
-        /* 드롭다운 메뉴 스타일 */
         .menu-item { position: relative; cursor: pointer; }
         .dropdown {
             display: block !important;
@@ -58,15 +57,19 @@
         .dropdown li a:hover { background: #f0f4ff; color: #0044cc !important; }
         .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
-        /* [3] 메인 배너 슬라이드쇼 */
-        .hero { position: relative; height: 800px; background-color: #000; overflow: hidden; }
+        /* [3] 메인 배너 슬라이드쇼 (원장님 요청 수정본) */
+        .hero { position: relative; height: 700px; background-color: #000; overflow: hidden; } /* 배경 검정색 유지 */
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-repeat: no-repeat; background-position: center;
+            background-size: contain; /* 사진 안짤리게 전체 표시 */
+            background-repeat: no-repeat; 
+            background-position: center;
             display: flex; align-items: center; justify-content: center;
             text-align: center; opacity: 0; animation: slideShow 9s infinite;
         }
-        .slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); z-index: 1; }
+        
+        /* 사진 본연의 색을 위해 어두운 덮개(Overlay) 제거 */
+        .slide::before { display: none; } 
         
         .slide1 { background-image: url('logo.jpg'); animation-delay: 0s; }
         .slide2 { background-image: url('의료진두명.jpg'); animation-delay: 3s; }
@@ -76,9 +79,8 @@
             0% { opacity: 0; } 10% { opacity: 1; } 33% { opacity: 1; } 43% { opacity: 0; } 100% { opacity: 0; } 
         }
         
-        .hero-content { position: relative; z-index: 2; color: white; padding: 0 20px; text-shadow: 0 2px 15px rgba(0,0,0,0.8); }
-        .btn { display: inline-block; background: #00d2d3; color: white; padding: 15px 45px; border-radius: 50px; font-size: 18px; font-weight: bold; transition: 0.3s; margin-top: 20px; }
-        .btn:hover { background: #01a3a4; transform: translateY(-3px); }
+        .hero-content { position: relative; z-index: 2; color: white; padding: 0 20px; text-shadow: 0 2px 15px rgba(0,0,0,0.9); }
+        .hero-content h2 { font-size: 38px; margin-bottom: 20px; }
 
         /* [4] 섹션 공통 스타일 */
         section { padding: 80px 20px; text-align: center; }
@@ -101,45 +103,14 @@
         footer { background: #222; color: #aaa; padding: 50px 20px; text-align: center; font-size: 14px; }
         footer strong { color: white; }
 
-        /* [5] 모바일 최종 통합 최적화 (768px 이하) */
-    @media (max-width: 768px) {
-            header {
-                flex-direction: column !important; /* 로고와 메뉴를 위아래로 분리 */
-                padding: 15px 5px !important;
-                height: auto !important;
-            }
-            .logo { 
-                font-size: 20px !important; 
-                margin-bottom: 15px !important; /* 로고 아래 공간 확보 */
-            }
-            
-            nav { width: 100%; }
-            nav ul { 
-                display: flex !important;
-                flex-direction: row !important; /* 핵심: 가로 정렬 유지 */
-                flex-wrap: wrap !important;     /* 화면 좁으면 자연스럽게 다음 줄로 */
-                justify-content: center !important; 
-                gap: 8px !important; /* 메뉴 사이 간격 조절 */
-            }
-            nav ul li a {
-                font-size: 13px !important; /* 가로로 다 들어갈 수 있게 글자 크기 조절 */
-                padding: 5px 3px !important;
-                white-space: nowrap; /* 글자 줄바꿈 방지 */
-            }
-
-            /* 드롭다운: 가로 메뉴일 때는 절대 위치가 더 예쁩니다 */
-            .dropdown {
-                position: absolute !important;
-                top: 100%;
-                left: 50%;
-                transform: translateX(-50%);
-                display: none !important;
-                width: 180px !important;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
-            }
-            .menu-item:hover .dropdown {
-                display: block !important;
-            }
+        /* [5] 모바일 최적화 (768px 이하) */
+        @media (max-width: 768px) {
+            header { flex-direction: column !important; padding: 15px 5px !important; }
+            .logo { font-size: 20px !important; margin-bottom: 15px !important; }
+            nav ul { gap: 8px !important; }
+            nav ul li a { font-size: 13px !important; }
+            .hero { height: 400px; } /* 모바일에서는 배너 높이 축소 */
+            .hero-content h2 { font-size: 24px; }
         }
     </style>
 </head>
@@ -242,7 +213,7 @@
         </div>
     </section>
 
-    <footer id="contact">
+    <footer>
         <p><strong>다나라의원·한의원</strong> | 대표자: 지창윤, 이광은</p>
         <p>사업자번호 312-93-73747</p>
         <p>서울시 송파구 백제고분로279 B1,2,3,4,5층</p>
@@ -253,6 +224,3 @@
 
 </body>
 </html>
-
-
-
