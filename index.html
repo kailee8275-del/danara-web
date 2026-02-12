@@ -57,29 +57,60 @@
         .dropdown li a:hover { background: #f0f4ff; color: #0044cc !important; }
         .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
-        /* [3] 메인 배너 슬라이드쇼 (원장님 요청 수정본) */
-        .hero { position: relative; height: 700px; background-color: #000; overflow: hidden; } /* 배경 검정색 유지 */
+        /* [3] 메인 배너 슬라이드쇼 (블러 배경 적용 수정본) */
+        .hero { position: relative; height: 700px; background-color: #222; overflow: hidden; }
+        
+        /* 슬라이드 컨테이너 (애니메이션 담당) */
         .slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: contain; /* 사진 안짤리게 전체 표시 */
-            background-repeat: no-repeat; 
-            background-position: center;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; opacity: 0; animation: slideShow 9s infinite;
+            opacity: 0; animation: slideShow 9s infinite;
         }
         
-        /* 사진 본연의 색을 위해 어두운 덮개(Overlay) 제거 */
-        .slide::before { display: none; } 
+        /* 1단계: 뒤에 깔리는 흐릿한 배경 레이어 */
+        .slide-bg-blur {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; /* 배경을 꽉 채움 */
+            background-position: center;
+            filter: blur(30px) brightness(0.7); /* 흐림 효과 및 약간 어둡게 */
+            transform: scale(1.1); /* 블러로 인한 테두리 흰색 번짐 방지용 확대 */
+            z-index: 1;
+        }
+
+        /* 2단계: 앞에 보이는 선명한 사진 레이어 */
+        .slide-img-contain {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: contain; /* 사진이 잘리지 않게 전체 표시 */
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 2;
+        }
+
+        /* 각 슬라이드별 이미지 소스 연결 */
+        .img-source-1 { background-image: url('logo.jpg'); }
+        .img-source-2 { background-image: url('의료진두명.jpg'); }
+        .img-source-3 { background-image: url('다나라방문선수.jpg'); }
         
-        .slide1 { background-image: url('logo.jpg'); animation-delay: 0s; }
-        .slide2 { background-image: url('의료진두명.jpg'); animation-delay: 3s; }
-        .slide3 { background-image: url('다나라방문선수.jpg'); animation-delay: 6s; }
+        /* 애니메이션 딜레이 설정 */
+        .slide1 { animation-delay: 0s; }
+        .slide2 { animation-delay: 3s; }
+        .slide3 { animation-delay: 6s; }
         
         @keyframes slideShow { 
             0% { opacity: 0; } 10% { opacity: 1; } 33% { opacity: 1; } 43% { opacity: 0; } 100% { opacity: 0; } 
         }
         
-        .hero-content { position: relative; z-index: 2; color: white; padding: 0 20px; text-shadow: 0 2px 15px rgba(0,0,0,0.9); }
+        /* 텍스트 콘텐츠 스타일 (가장 위에 배치) */
+        .hero-content { 
+            position: absolute; /* 절대 위치로 중앙 정렬 */
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 100%;
+            z-index: 3; /* 사진들보다 위에 위치 */
+            color: white; 
+            padding: 0 20px; 
+            text-align: center;
+            /* 배경이 밝아질 수 있으므로 글자 그림자를 진하게 넣어 가독성 확보 */
+            text-shadow: 0 4px 30px rgba(0,0,0,1), 0 2px 5px rgba(0,0,0,0.8);
+        }
         .hero-content h2 { font-size: 38px; margin-bottom: 20px; }
 
         /* [4] 섹션 공통 스타일 */
@@ -109,7 +140,7 @@
             .logo { font-size: 20px !important; margin-bottom: 15px !important; }
             nav ul { gap: 8px !important; }
             nav ul li a { font-size: 13px !important; }
-            .hero { height: 400px; } /* 모바일에서는 배너 높이 축소 */
+            .hero { height: 450px; } /* 모바일에서는 배너 높이 축소 */
             .hero-content h2 { font-size: 24px; }
         }
     </style>
@@ -138,19 +169,27 @@
 
     <div class="hero">
         <div class="slide slide1">
+            <div class="slide-bg-blur img-source-1"></div>
+            <div class="slide-img-contain img-source-1"></div>
             <div class="hero-content">
                 <h2>두 개의 시선으로 통증을 잡다</h2>
                 <p style="color: #ffcc00; font-weight: 700;">대한민국 0.1% 의사·한의사 복수면허</p>
                 <p>양쪽 의술의 경계를 허물고,<br>가장 이로운 <strong>'치료의 정답'</strong>에만 집중합니다.</p>
             </div>
         </div>
+
         <div class="slide slide2">
+            <div class="slide-bg-blur img-source-2"></div>
+            <div class="slide-img-contain img-source-2"></div>
             <div class="hero-content">
                 <h2>스테로이드와 수술 없이<br>통증을 치료합니다</h2>
                 <p>환자분의 몸에 부담을 주지 않는<br>다나라만의 비수술 통합 치료</p>
             </div>
         </div>
+
         <div class="slide slide3">
+            <div class="slide-bg-blur img-source-3"></div>
+            <div class="slide-img-contain img-source-3"></div>
             <div class="hero-content">
                 <h2>스포츠 선수들의<br>후유증 없는 회복을 응원합니다</h2>
                 <p>프로 선수들도 믿고 찾는<br>다나라 스포츠 재활 클리닉</p>
