@@ -11,137 +11,126 @@
         a { text-decoration: none; color: inherit; }
         ul { list-style: none; padding: 0; margin: 0; }
         
-        /* [2] 헤더 및 드롭다운 메뉴 */
+        /* [2] 헤더 및 드롭다운 메뉴 (PC) */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 50px; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: 700; color: #0044cc; text-decoration: none; }
         .logo span { color: #333; font-weight: 300; }
 
         nav ul { display: flex; gap: 40px; font-weight: 500; list-style: none; margin: 0; padding: 0; align-items: center; }
-        nav ul li a, nav ul li a:visited, nav ul li a:active {
-            color: #333 !important; 
-            text-decoration: none !important;
-        }
+        nav ul li a, nav ul li a:visited, nav ul li a:active { color: #333 !important; text-decoration: none !important; }
         nav ul li a:hover { color: #0044cc !important; }
 
         .current-menu { color: #0044cc !important; font-weight: 700 !important; }
 
-        /* 드롭다운 메뉴 스타일 */
         .menu-item { position: relative; cursor: pointer; }
         .dropdown {
-            display: block !important;
-            position: absolute;
-            top: 100%; 
-            left: 50%; 
-            transform: translateX(-50%) translateY(10px);
-            background: white; 
-            border: 1px solid #eee; 
-            border-radius: 12px;
-            width: 240px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-            padding: 10px 0;
-            list-style: none; 
-            opacity: 0; 
-            visibility: hidden; 
-            transition: 0.3s; 
-            z-index: 1001;
+            display: block !important; position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: white; border: 1px solid #eee; border-radius: 12px; width: 240px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15); padding: 10px 0; opacity: 0; visibility: hidden; transition: 0.3s; z-index: 1001;
         }
-        .dropdown li { width: 100%; display: block; }
-        .dropdown li a { 
-            display: block !important; 
-            padding: 15px 20px; 
-            font-size: 15px; 
-            text-align: center; 
-            color: #555 !important; 
-            white-space: nowrap; 
-            transition: 0.2s;
-        }
+        .dropdown li a { display: block !important; padding: 15px 20px; font-size: 15px; text-align: center; color: #555 !important; white-space: nowrap; }
         .dropdown li a:hover { background: #f0f4ff; color: #0044cc !important; }
         .menu-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
 
-        /* [3] 메인 배너 슬라이드쇼 */
-        .hero { position: relative; height: 800px; background-color: #000; overflow: hidden; }
-        .slide {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover; background-repeat: no-repeat; background-position: center;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; opacity: 0; animation: slideShow 9s infinite;
-        }
-        .slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); z-index: 1; }
-        
-        .slide1 { background-image: url('logo.jpg'); animation-delay: 0s; }
-        .slide2 { background-image: url('의료진두명.jpg'); animation-delay: 3s; }
-        .slide3 { background-image: url('다나라방문선수.jpg'); animation-delay: 6s; }
-        
-        @keyframes slideShow { 
-            0% { opacity: 0; } 10% { opacity: 1; } 33% { opacity: 1; } 43% { opacity: 0; } 100% { opacity: 0; } 
-        }
-        
-        .hero-content { position: relative; z-index: 2; color: white; padding: 0 20px; text-shadow: 0 2px 15px rgba(0,0,0,0.8); }
-        .btn { display: inline-block; background: #00d2d3; color: white; padding: 15px 45px; border-radius: 50px; font-size: 18px; font-weight: bold; transition: 0.3s; margin-top: 20px; }
-        .btn:hover { background: #01a3a4; transform: translateY(-3px); }
+        /* [3] 메인 배너 슬라이드쇼 - 슬라이드별 최적화 */
+        .hero { position: relative; height: 750px; background-color: #000; overflow: hidden; }
+        .slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0; animation: slideShow 12s infinite; }
+        .slide::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3); z-index: 1; }
 
-        /* [4] 섹션 공통 스타일 */
+        /* 건물 전경 - 풀스크린 */
+        .slide1 { background-image: url('logo.jpg'); background-size: cover; background-position: center; animation-delay: 0s; }
+        /* 의료진 - 얼굴 보호(위치 상단 15% 고정) */
+        .slide2 { background-image: url('의료진두명.jpg'); background-size: cover; background-position: center 15%; animation-delay: 4s; }
+        /* 선수단 - 콜라주 전체 표시(블러 하이브리드) */
+        .slide3 { animation-delay: 8s; background: #000; }
+        .slide3-blur { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('다나라방문선수.jpg'); background-size: cover; filter: blur(20px) brightness(0.5); transform: scale(1.1); }
+        .slide3-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('다나라방문선수.jpg'); background-size: contain; background-repeat: no-repeat; background-position: center; z-index: 2; }
+
+        @keyframes slideShow { 0% { opacity: 0; } 5% { opacity: 1; } 30% { opacity: 1; } 35% { opacity: 0; } 100% { opacity: 0; } }
+        .hero-content { position: relative; z-index: 10; color: white; text-align: center; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
+        .hero-content h2 { font-size: 46px; font-weight: 700; margin-bottom: 20px; }
+        .slide2 .hero-content { margin-top: -220px; } /* 의료진 눈 가림 방지 */
+        .slide3 .hero-content { margin-top: -160px; } /* 박세리 선수 얼굴 가림 방지 */
+        /* [4] 섹션 제목 변경: 다나라 통합진료 */
         section { padding: 80px 20px; text-align: center; }
-        .section-title { font-size: 32px; font-weight: 700; margin-bottom: 60px; color: #222; position: relative; display: inline-block; }
-        .section-title::after { content: ''; display: block; width: 50px; height: 3px; background: #0044cc; margin: 15px auto 0; }
+        .section-title { font-size: 34px; font-weight: 700; margin-bottom: 60px; color: #222; letter-spacing: -1px; }
+        .section-title span { color: #0044cc; } /* '통합진료' 부분만 포인트 색상 */
+        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: #0044cc; margin: 15px auto 0; }
 
+        /* [5] 클리닉 그리드 및 카드 (기존 동일) */
         .features { background: #f9f9f9; }
         .feature-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; max-width: 1200px; margin: auto; }
         .feature-item { background: white; padding: 50px 30px; width: 300px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: 0.4s; cursor: pointer; }
         .feature-item:hover { transform: translateY(-15px); background: #f0f4ff; border: 1px solid #0044cc; }
         .icon { font-size: 50px; margin-bottom: 25px; display: block; }
         
+        /* [6] 의료진 및 푸터 (기존 동일) */
         .doctor-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; max-width: 1200px; margin: auto; }
-        .doctor-card { flex: 1; min-width: 320px; max-width: 500px; background: white; padding: 50px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid #eee; text-align: center; }
-        .position { color: #0044cc; font-weight: 700; margin-bottom: 25px; display: block; }
-        .comment { background-color: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 30px; }
-        .career-list { display: inline-block; text-align: left; }
-        .career-list li { margin-bottom: 8px; color: #666; font-size: 0.95em; }
+        .doctor-card { flex: 1; min-width: 320px; max-width: 500px; background: white; padding: 50px 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; }
+        footer { background: #222; color: #aaa; padding: 50px 20px; text-align: center; }
 
-        footer { background: #222; color: #aaa; padding: 50px 20px; text-align: center; font-size: 14px; }
-        footer strong { color: white; }
-
-        /* [5] 모바일 최종 통합 최적화 (768px 이하) */
-    @media (max-width: 768px) {
-            header {
-                flex-direction: column !important; /* 로고와 메뉴를 위아래로 분리 */
-                padding: 15px 5px !important;
-                height: auto !important;
-            }
-            .logo { 
-                font-size: 20px !important; 
-                margin-bottom: 15px !important; /* 로고 아래 공간 확보 */
-            }
+        /* [6] 모바일 최종 통합 최적화 (768px 이하) */
+        @media (max-width: 768px) {
+            header { flex-direction: column !important; padding: 15px 5px !important; height: auto !important; }
+            .logo { font-size: 20px !important; margin-bottom: 15px !important; }
             
             nav { width: 100%; }
             nav ul { 
-                display: flex !important;
-                flex-direction: row !important; /* 핵심: 가로 정렬 유지 */
-                flex-wrap: wrap !important;     /* 화면 좁으면 자연스럽게 다음 줄로 */
+                flex-direction: row !important; /* 가로 정렬 */
+                flex-wrap: wrap !important;     /* 자동 줄바꿈 */
                 justify-content: center !important; 
-                gap: 8px !important; /* 메뉴 사이 간격 조절 */
+                gap: 8px !important; 
             }
-            nav ul li a {
-                font-size: 13px !important; /* 가로로 다 들어갈 수 있게 글자 크기 조절 */
-                padding: 5px 3px !important;
-                white-space: nowrap; /* 글자 줄바꿈 방지 */
+            nav ul li a { 
+                font-size: 13px !important; 
+                padding: 5px 3px !important; 
+                white-space: nowrap; 
             }
+            /* [수정] 메인 배너(Hero) 가독성 및 줄바꿈 해결 */
+            .hero { height: 500px; }
+            .hero-content h2 { 
+                font-size: 24px !important; 
+                word-break: keep-all !important; /* "통증을", "수술 없이" 단어가 잘리지 않게 함 */
+                line-height: 1.4 !important;
+                padding: 0 15px;
+            }
+            .slide3 .hero-content p {
+        font-size: 16px !important; 
+        font-weight: 700 !important;
+        color: #ffcc00 !important; /* 노란색으로 변경 */
+        text-shadow: 0 2px 12px rgba(0,0,0,1) !important;
+    }
 
-            /* 드롭다운: 가로 메뉴일 때는 절대 위치가 더 예쁩니다 */
+            /* 모바일 드롭다운 스타일 조정 */
             .dropdown {
                 position: absolute !important;
                 top: 100%;
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translateX(-50%) translateY(5px);
+                width: 200px !important;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
                 display: none !important;
-                width: 180px !important;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1) !important;
+                opacity: 1 !important;
+                visibility: visible !important;
             }
-            .menu-item:hover .dropdown {
-                display: block !important;
+            .menu-item:hover .dropdown { display: block !important; }
+
+            .sub-hero { height: 250px; }
+            .sub-hero h1 { font-size: 24px; }
+            .sub-hero p { font-size: 16px; }
+
+            .main-copy h2 { font-size: 20px; padding: 0 10px; }
+            
+            .treatment-card { 
+                flex-direction: column; /* 아이콘과 텍스트를 위아래로 */
+                padding: 20px; 
+                border-left-width: 4px;
             }
+            .card-content h3 { font-size: 19px; }
+            .card-content p { font-size: 15px; }
         }
     </style>
+
 </head>
 <body>
 
@@ -151,16 +140,16 @@
             <ul>
                 <li><a href="about.html">병원소개</a></li>
                 <li class="menu-item">
-                    <a href="#features">클리닉 ▼</a>
+                    <a href="index.html#features">클리닉 ▼</a>
                     <ul class="dropdown">
                         <li><a href="clinic01.html">척추·관절 통합클리닉</a></li>
                         <li><a href="clinic02.html">통증클리닉</a></li>
                         <li><a href="clinic03.html">재활 클리닉</a></li>
                     </ul>
                 </li>
-                <li><a href="#doctor">의료진</a></li>
+                <li><a href="index.html#doctor">의료진</a></li>
                 <li><a href="guide.html">오시는길</a></li>
-                <li><a href="price.html">비급여안내</a></li>
+                <li><a href="price.html">비급여 안내</a></li>
             </ul>
         </nav>
     </header>
@@ -169,8 +158,8 @@
         <div class="slide slide1">
             <div class="hero-content">
                 <h2>두 개의 시선으로 통증을 잡다</h2>
-                <p style="color: #ffcc00; font-weight: 700;">대한민국 0.1% 의사·한의사 복수면허</p>
-                <p>양쪽 의술의 경계를 허물고,<br>가장 이로운 <strong>'치료의 정답'</strong>에만 집중합니다.</p>
+                <p style="color: #ffcc00; font-weight: 700; font-size: 20px;">대한민국 0.1% 의사·한의사 복수면허</p>
+                <p>양쪽 의술의 경계를 허물고, 가장 이로운 '치료의 정답'에만 집중합니다.</p>
             </div>
         </div>
         <div class="slide slide2">
@@ -180,6 +169,8 @@
             </div>
         </div>
         <div class="slide slide3">
+            <div class="slide3-blur"></div>
+            <div class="slide3-img"></div>
             <div class="hero-content">
                 <h2>스포츠 선수들의<br>후유증 없는 회복을 응원합니다</h2>
                 <p>프로 선수들도 믿고 찾는<br>다나라 스포츠 재활 클리닉</p>
@@ -188,7 +179,7 @@
     </div>
 
     <section id="features" class="features">
-        <h2 class="section-title">다나라 클리닉</h2>
+        <h2 class="section-title">다나라 <span>통합진료</span></h2>
         <div class="feature-grid">
             <div class="feature-item" onclick="location.href='clinic01.html'">
                 <span class="icon">🦴</span>
@@ -242,7 +233,7 @@
         </div>
     </section>
 
-    <footer id="contact">
+    <footer>
         <p><strong>다나라의원·한의원</strong> | 대표자: 지창윤, 이광은</p>
         <p>사업자번호 312-93-73747</p>
         <p>서울시 송파구 백제고분로279 B1,2,3,4,5층</p>
